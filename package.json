@@ -7,7 +7,7 @@
     "build": "next build",
     "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
     "deploy":  "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
-    "upload":  "opennextjs-cloudflare build && opennextjs-cloudflare upload" /* optional – gradual deploys */
+    "upload":  "opennextjs-cloudflare build && opennextjs-cloudflare upload" 
   },
   "dependencies": {
     "@opennextjs/cloudflare": "^1.0.4",
