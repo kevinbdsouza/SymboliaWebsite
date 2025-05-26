@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",          // root of the project
+    "paths": {
+      "@/*": ["./*"]         // so "@/styles/…" resolves to ./styles/…
+    }
+  }
+}

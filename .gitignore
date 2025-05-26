@@ -1,0 +1,75 @@
+###############################################################################
+# 1 Dependency caches / package managers
+###############################################################################
+node_modules/
+.pnpm-store/
+.npm/                  # local npm cache (rarely useful to share)
+.yarn/                 # Yarn v2+ (Berry) files
+.pnp.cjs
+.pnp.loader.mjs
+
+###############################################################################
+# 2 Next.js & other build artifacts
+###############################################################################
+.next/                 # Next.js build output
+.turbo/                # TurboRepo cache
+dist/
+build/
+out/                   # next export static output
+.vercel/               # Vercel CLI deploy cache
+.storybook-static/     # Storybook build
+
+###############################################################################
+# 3 Testing & coverage
+###############################################################################
+coverage/
+.nyc_output/
+jest-html-reporters-*.html
+cypress/videos/
+cypress/screenshots/
+
+###############################################################################
+# 4 Runtime logs & crash dumps
+###############################################################################
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+*.log.*
+
+###############################################################################
+# 5 Environment / secrets
+###############################################################################
+.env*
+!.env.example          # keep a template if you have one
+*.local                # e.g. .env.local, .babelrc.local, etc.
+*.pem
+*.key
+*.crt
+*.pfx
+
+###############################################################################
+# 6 Editor & IDE settings
+###############################################################################
+.vscode/
+.idea/
+*.code-workspace
+*.sublime-*
+*.swp                 # Vim swap files
+*.swo
+*~                    # common “backup” suffix
+.DS_Store             # macOS
+Thumbs.db             # Windows
+ehthumbs.db
+Icon?
+
+###############################################################################
+# 7 Misc. tool caches
+###############################################################################
+.eslintcache
+.prettier-cache/
+.cache/               # Babel, Parcel, etc.
+.parcel-cache/
+expo/
+android/.gradle/
+ios/Pods/
