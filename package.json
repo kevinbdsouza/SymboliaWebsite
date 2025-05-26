@@ -5,10 +5,12 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
+    "deploy":  "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
+    "upload":  "opennextjs-cloudflare build && opennextjs-cloudflare upload" /* optional – gradual deploys */
   },
   "dependencies": {
+    "@opennextjs/cloudflare": "^1.0.4",
     "next": "latest",
     "react": "latest",
     "react-dom": "latest"
@@ -16,6 +18,7 @@
   "devDependencies": {
     "autoprefixer": "^10.4.16",
     "postcss": "^8.4.31",
-    "tailwindcss": "^3.4.1"
+    "tailwindcss": "^3.4.1",
+    "wrangler": "^4.16.1"
   }
 }
