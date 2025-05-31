@@ -1,26 +1,31 @@
+// components/Hero.js
+
+import DynamicNetworkBackground from './DynamicNetworkBackground';
+
 export default function Hero() {
   return (
-    <section className="relative px-8 py-24 max-w-4xl mx-auto bg-white shadow-lg">
-      <h1 className="font-serif text-5xl md:text-6xl leading-tight text-ink mb-6">
-        How will <span className="text-accent">Symbolic AI</span> shape tomorrow?
-      </h1>
-      <p className="font-sans text-lg mb-4">
-        We’re a research lab pushing the boundaries of inference-time control, neuro‑symbolic integration, and AI for public good.
-      </p>
-      <p className="font-sans text-lg mb-8">
-        Our team designs methods that steer large language models, accelerate scientific discovery, and strengthen societal resilience.
-      </p>
+    <section className="px-4 sm:px-8 py-20 sm:py-24 max-w-6xl mx-auto bg-[#f5f5f0] shadow-lg overflow-hidden">
+      <div className="flex flex-col-reverse lg:flex-row items-center">
+        {/* ─── Text column ───────────────────────────────────────── */}
+        <div className="mt-8 lg:mt-0 lg:w-1/2 relative z-10">
+          <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl leading-tight text-ink mb-6">
+            Shaping the Next Decade of AI
+          </h1>
+          <p className="font-sans text-ink mb-4">
+            We’re a research and policy lab dedicated to advancing AI and its positive impact on society.
+          </p>
+          <p className="font-sans text-ink">
+            Our team studies limitations of existing AI, how AI can accelerate scientific discovery, what AI means for human society and well being, and how to ensure the benefits of AI accrue to every human.
+          </p>
+        </div>
 
-      {/* accent lines */}
-      <div className="accent-lines">
-        <svg viewBox="0 0 800 400">
-          <path d="M0 350 L800 0" />
-          <path d="M0 360 L780 0" />
-          <path d="M0 370 L760 0" />
-          <path d="M0 380 L740 0" />
-          <path d="M0 390 L720 0" />
-        </svg>
+        {/* ─── Animation column ─────────────────────────────────── */}
+        <div className="lg:w-1/2 w-full h-60 sm:h-72 lg:h-[300px] relative">
+          <div className="absolute inset-0">
+            <DynamicNetworkBackground />
+          </div>
+        </div>
       </div>
     </section>
-  )
+  );
 }

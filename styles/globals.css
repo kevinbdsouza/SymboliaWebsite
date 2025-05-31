@@ -41,3 +41,10 @@ body::before {
   stroke-width: 2;
   fill: none;
 }
+
+@media (max-width: 640px) {
+  body::before {
+    opacity: 0.2;           /* lighter grid */
+    background-size: 32px 32px;
+  }
+}

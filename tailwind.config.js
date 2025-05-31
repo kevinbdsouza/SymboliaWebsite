@@ -11,8 +11,10 @@ module.exports = {
         sans: ['Inter', 'sans-serif'],
       },
       colors: {
-        accent: '#FF5A1F', // warm orange for accent lines
-        ink: '#0C1E2C',   // deep navy ink
+        accent: '#FF5A1F', // warm orange for accent lines (used by DynamicNetworkBackground)
+        ink: '#0C1E2C',    // deep navy ink
+        primary: '#A0522D', // Example: Sienna - a darker, brownish-red. Choose your desired color for "Symbolic AI".
+        heading: '#616161',
       }
     },
   },
