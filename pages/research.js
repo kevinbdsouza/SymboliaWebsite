@@ -5,10 +5,10 @@ import Image from 'next/image';
 const researchArticles = [
   {
     slug: 'neuro-symbolic-foundations',
-    title: 'Gradual disempowerment and the intelligence curse',
+    title: 'Coming Soon',
     authors: 'X, Y',
-    date: 'February 2025',
-    description: 'Placeholder.',
+    date: 'June 2025',
+    description: '.',
   },
 ];
 

@@ -3,10 +3,10 @@ import ResearchCard from '@/components/ResearchCard'
 const projectList = [
   {
     slug: 'inference-time-steering',
-    title: 'Inference-Time Steering for LLMs',
-    authors: 'XX, et al.',
-    date: 'May 2025',
-    description: 'Placeholder.',
+    title: 'Coming Soon',
+    authors: 'X',
+    date: 'June 2025',
+    description: '.',
   },
   // Add your other projects here
 ];
