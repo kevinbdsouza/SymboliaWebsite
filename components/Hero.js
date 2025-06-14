@@ -15,7 +15,7 @@ export default function Hero() {
             We’re a research and policy lab dedicated to advancing AI in India and its positive impact on society.
           </p>
           <p className="font-sans text-ink">
-            Our team studies limitations of existing AI, how AI can accelerate scientific discovery, what AI means for human society and well being, and how to ensure the benefits of AI accrue to every human.
+            By uniting frontier research, human-centred product design, rigorous benchmarking, and policy insight, we aim to steer AI toward a future that multiplies scientific progress, safeguards social welfare, and distributes opportunity - setting guardrails and goals that guide the technology, rather than letting it guide us.
           </p>
         </div>
 

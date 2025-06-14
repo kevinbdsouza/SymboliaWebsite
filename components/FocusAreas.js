@@ -15,11 +15,11 @@ const focusAreas = [
   },
   {
     title: "Benchmarking & Evaluation",
-    description: "Building rigorous, real-world benchmarks and evaluation suites to track AI capabilities, safety, and human-in-the-loop outcomes, steering research toward measurable progress.",
+    description: "Building rigorous, real-world benchmarks and evaluation suites to track AI capabilities and human-in-the-loop outcomes, steering research toward measurable progress.",
   },
   {
     title: "Augmentative AI Products",
-    description: "Envisioning and crafting AI tools that amplify human creativity, judgment, and productivity—augmenting rather than replacing people in critical workflows.",
+    description: "Envisioning and crafting AI tools that amplify human creativity, judgment, and productivity, augmenting rather than replacing people in critical workflows.",
   },
   {
     title: "Shared Prosperity",
