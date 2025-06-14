@@ -18,7 +18,7 @@ export default function Research() {
       <div className="text-center mb-16"> {/* Increased bottom margin */}
         <h1 className="font-serif text-5xl md:text-6xl text-ink mb-4">Our Research</h1> {/* Increased bottom margin */}
         <p className="font-sans text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed"> {/* Slightly darker text, wider max-width */}
-          How can we create an AI-future that is human centered? Explore our latest papers, policy reports, and perspective articles in our different focus areas. 
+          How can we bring forth a positive AI-future? Explore our latest papers, policy reports, and perspective articles in our different focus areas. 
         </p>
       </div>
 

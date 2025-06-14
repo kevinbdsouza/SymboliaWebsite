@@ -8,7 +8,7 @@ export default function About() {
         Symbolia Labs is an independent research and policy lab based in Bengaluru, India, committed to steering artificial intelligence toward outcomes that elevate human flourishing.
       </p>
       <p className="font-sans text-lg">
-        We pair frontier technical work with rigorous social-science analysis to answer a single question: How do we build an AI future that is unmistakably human‑centred?
+        We pair frontier technical work with rigorous social-science analysis to answer a single question: How do we build an AI future that is unmistakably people‑centred, bearing in mind an entangled world?
       </p>
       <p className="font-sans text-lg">
         If you are an investor who shares our ethos and wants to support our mission,{' '}

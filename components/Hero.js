@@ -12,7 +12,7 @@ export default function Hero() {
             Shaping the Next Decade of AI
           </h1>
           <p className="font-sans text-ink mb-4">
-            We’re a research and policy lab dedicated to advancing AI and its positive impact on society.
+            We’re a research and policy lab dedicated to advancing AI in India and its positive impact on society.
           </p>
           <p className="font-sans text-ink">
             Our team studies limitations of existing AI, how AI can accelerate scientific discovery, what AI means for human society and well being, and how to ensure the benefits of AI accrue to every human.

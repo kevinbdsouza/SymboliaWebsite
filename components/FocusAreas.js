@@ -6,12 +6,20 @@ const focusAreas = [
     description: "Investigating the fundamental limits of today’s AI systems and exploring new paradigms that unlock greater capability and reliability.",
   },
   {
+    title: "Societal Impact",
+    description: "Examining how AI reshapes work, well-being, and global equity so society can adapt and thrive.",
+  },
+  {
     title: "AI for Discovery",
     description: "Exploring the potential of AI to accelerate breakthroughs across science, biology, climate, and beyond.",
   },
   {
-    title: "Societal Impact",
-    description: "Examining how AI reshapes work, well-being, and global equity so society can adapt and thrive.",
+    title: "Benchmarking & Evaluation",
+    description: "Building rigorous, real-world benchmarks and evaluation suites to track AI capabilities, safety, and human-in-the-loop outcomes, steering research toward measurable progress.",
+  },
+  {
+    title: "Augmentative AI Products",
+    description: "Envisioning and crafting AI tools that amplify human creativity, judgment, and productivity—augmenting rather than replacing people in critical workflows.",
   },
   {
     title: "Shared Prosperity",

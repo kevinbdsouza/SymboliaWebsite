@@ -17,7 +17,7 @@ export default function Programs() {
       <div className="text-center mb-16">
         <h1 className="font-serif text-5xl md:text-6xl text-ink mb-4">Our Programs</h1>
         <p className="font-sans text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-          Explore our ongoing programs and initiatives propelling our mission to shape the AI-future for human benefit. 
+          Explore our ongoing programs and initiatives propelling our mission to shape the future of AI in India. 
         </p>
       </div>
 
