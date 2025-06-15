@@ -6,7 +6,6 @@ const researchArticles = [
   {
     slug: "AI's-double-edged-sword:-navigating-labor-and-growth-this-decade",
     title: "AI's Double Edged Sword: Navigating Labor and Growth This Decade",
-    authors: 'X, Y',
     date: 'June 2025',
     description: '.',
   },
