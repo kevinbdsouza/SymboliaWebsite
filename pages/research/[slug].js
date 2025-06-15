@@ -11,11 +11,11 @@ export default function ResearchArticle() {
       </h1>
       <div className="bg-gray-100 rounded-lg p-8 mt-8">
         <p className="font-sans text-lg text-gray-700 mb-4">
-          Coming soon!
+          .
         </p>
         {/* Placeholder for future interactive content */}
         <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-gray-400">
-          [Interactive content placeholder]
+          .
         </div>
       </div>
     </section>

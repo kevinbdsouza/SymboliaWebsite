@@ -4,7 +4,7 @@ import Image from 'next/image';
 // Placeholder research data (assuming this remains the same as your provided selection)
 const researchArticles = [
   {
-    slug: 'neuro-symbolic-foundations',
+    slug: "AI's Double-Edged Sword: Navigating Labor, Growth in the Next Twenty Years",
     title: 'Coming Soon',
     authors: 'X, Y',
     date: 'June 2025',
