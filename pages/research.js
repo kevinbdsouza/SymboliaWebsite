@@ -7,7 +7,22 @@ const researchArticles = [
     slug: "navigating-labor-and-growth-in-the-AI-decade:-a-review-and-research-agenda",
     title: "Navigating Labor and Growth in the AI Decade: A Review and Research Agenda",
     date: 'June 2025',
-    description: '.',
+    description: "Artificial Intelligence (AI) stands poised to reshape economies and societies \
+    profoundly over the next two decades, yet the nature and magnitude of its impact remain \
+    subjects of intense debate and considerable uncertainty. We review the diverse spectrum of \
+    projections concerning AI's consequences for labor markets, productivity, wages, and economic \
+    growth, and synthesize contrasting viewpoints, ranging from utopian visions of unprecedented \
+    prosperity to dystopian scenarios of widespread disruption and inequality. Central to this \
+    review is a critique of existing forecasting methodologies and models, highlighting their \
+    inherent limitations, particularly the prevalent lack of realistic, integrated scenarios capable \
+    of capturing complex feedback loops between technology, policy, and society. Drawing upon recent \
+    economic research, including analyses of automation risk exposure [1] and firm-level AI adoption [2], \
+    alongside considerations of accelerating AI capabilities [3], we identify significant gaps \
+    in current understanding. We argue that realizing AI's immense potential while mitigating substantial \
+    risks requires a more grounded, nuanced, and adaptive approach to analysis and policymaking than is currently common. \
+    We propose a path forward, emphasizing the need for improved modeling techniques, enhanced data collection, \
+    interdisciplinary collaboration, and a focus on adaptive governance strategies designed to steer AI development \
+    towards shared prosperity and enhanced human well-being across a range of plausible futures.",
   },
 ];
 
