@@ -4,8 +4,8 @@ import Image from 'next/image';
 // Placeholder research data (assuming this remains the same as your provided selection)
 const researchArticles = [
   {
-    slug: "AI's-double-edged-sword:-navigating-labor-and-growth-this-decade",
-    title: "AI's Double Edged Sword: Navigating Labor and Growth This Decade",
+    slug: "navigating-labor-and-growth-in-the-AI-decade:-a-review-and-research-agenda",
+    title: "Navigating Labor and Growth in the AI Decade: A Review and Research Agenda",
     date: 'June 2025',
     description: '.',
   },
