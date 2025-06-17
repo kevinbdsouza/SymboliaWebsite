@@ -5,7 +5,11 @@
 /* Import Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
 
-html, body {
+html {
+  scroll-behavior: smooth;
+}
+
+body {
   @apply bg-[#fafaf6] text-ink antialiased;
 }
 
@@ -23,28 +27,29 @@ body::before {
   background-size: 50px 50px;
   pointer-events: none;
   z-index: -1;
+  opacity: 0.5;
 }
 
-/* Accent line motif */
-.accent-lines {
-  position: absolute;
-  bottom: -2rem;
-  right: -10rem;
-  width: 60vw;
-  height: 30vh;
-  pointer-events: none;
-  z-index: 0;
+/* Article specific styles */
+.prose {
+    --tw-prose-body: theme('colors.gray.800');
+    --tw-prose-headings: theme('colors.ink');
+    --tw-prose-lead: theme('colors.gray.700');
+    --tw-prose-links: theme('colors.accent');
+    --tw-prose-bold: theme('colors.ink');
+    --tw-prose-counters: theme('colors.gray.600');
+    --tw-prose-bullets: theme('colors.gray.400');
+    --tw-prose-hr: theme('colors.gray.200');
+    --tw-prose-quotes: theme('colors.ink');
+    --tw-prose-quote-borders: theme('colors.gray.200');
+    --tw-prose-captions: theme('colors.gray.500');
+    --tw-prose-code: theme('colors.ink');
+    --tw-prose-pre-code: theme('colors.gray.200');
+    --tw-prose-pre-bg: theme('colors.gray.800');
+    --tw-prose-th-borders: theme('colors.gray.300');
+    --tw-prose-td-borders: theme('colors.gray.200');
 }
 
-.accent-lines svg path {
-  stroke: theme('colors.accent');
-  stroke-width: 2;
-  fill: none;
-}
-
-@media (max-width: 640px) {
-  body::before {
-    opacity: 0.2;           /* lighter grid */
-    background-size: 32px 32px;
-  }
+.prose h1, .prose h2, .prose h3 {
+  font-family: theme('fontFamily.serif');
 }

@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+html, body {
+  @apply bg-[#fafaf6] text-ink antialiased;
+}
+
+/* Subtle grid background */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    linear-gradient(to right, rgba(0,0,0,0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0,0,0,0.04) 1px, transparent 1px);
+  background-size: 50px 50px;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Accent line motif */
+.accent-lines {
+  position: absolute;
+  bottom: -2rem;
+  right: -10rem;
+  width: 60vw;
+  height: 30vh;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.accent-lines svg path {
+  stroke: theme('colors.accent');
+  stroke-width: 2;
+  fill: none;
+}
+
+@media (max-width: 640px) {
+  body::before {
+    opacity: 0.2;           /* lighter grid */
+    background-size: 32px 32px;
+  }
+}
