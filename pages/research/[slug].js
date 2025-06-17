@@ -69,11 +69,12 @@ export default function ResearchArticle({ slug, html }) {
 }
 
 export async function getStaticPaths() {
-  const contentDir = join(process.cwd(), 'pages/content');
-  const files = fs.readdirSync(contentDir).filter((f) => f.endsWith('.html'));
+  // Pre-generate pages for all slugs declared in the research list. This keeps
+  // the build independent of the filesystem structure and avoids missing paths
+  // when new articles are added.
   return {
-    paths: files.map((f) => ({ params: { slug: f.replace(/\.html$/, '') } })),
-    fallback: false,
+    paths: researchArticles.map((a) => ({ params: { slug: a.slug } })),
+    fallback: 'blocking',
   };
 }
 
