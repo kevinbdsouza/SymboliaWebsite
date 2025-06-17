@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "symbolia-website",
+  "name": "symbolia-labs",
   "main": ".open-next/worker.js",
   "compatibility_date": "2025-05-26",
   "compatibility_flags": ["nodejs_compat"],

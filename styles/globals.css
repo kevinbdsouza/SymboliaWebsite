@@ -9,12 +9,6 @@ html, body {
   @apply bg-[#fafaf6] text-ink antialiased;
 }
 
-.prose-ink {
-  --tw-prose-body: theme('colors.ink');
-  --tw-prose-headings: theme('colors.ink');
-  --tw-prose-links: theme('colors.primary');
-}
-
 /* Subtle grid background */
 body::before {
   content: "";

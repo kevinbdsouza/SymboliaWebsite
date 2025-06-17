@@ -1,3 +1,4 @@
+==> .gitignore <==
 ###############################################################################
 # 1 Dependency caches / package managers
 ###############################################################################
@@ -73,6 +74,8 @@ Icon?
 expo/
 android/.gradle/
 ios/Pods/
+
+==> README.md <==
 # Symbolia Labs Website
 
 This is a minimal Next.js + Tailwind starter styled after [Forethought](https://www.forethought.org/).
@@ -97,298 +100,58 @@ Open [http://localhost:3000](http://localhost:3000) to see the website.
 
 ## Logo
 
-Place `logo.png` in the `public` folder (use the supplied image or an SVG).import { useRef, useEffect, useCallback } from 'react';
-
-// Configuration for the particle animation
-const PARTICLE_COUNT = 50;
-const ACCENT_COLOR_RGB = '255, 90, 31'; // RGB for #FF5A1F (your accent color)
-const PARTICLE_COLOR = `rgba(${ACCENT_COLOR_RGB}, 0.6)`;
-const LINE_COLOR = `rgba(${ACCENT_COLOR_RGB}, 0.25)`;
-const MAX_LINE_DISTANCE = 130;
-const PARTICLE_SPEED = 0.3;
-const PARTICLE_BASE_SIZE = 1.5;
-
-class Particle {
-    constructor(x, y, canvasWidth, canvasHeight) {
-        this.x = x;
-        this.y = y;
-        this.canvasWidth = canvasWidth;
-        this.canvasHeight = canvasHeight;
-        this.size = Math.random() * 1.5 + PARTICLE_BASE_SIZE;
-        this.vx = (Math.random() - 0.5) * PARTICLE_SPEED * 2;
-        this.vy = (Math.random() - 0.5) * PARTICLE_SPEED * 2;
-    }
-
-    update() {
-        this.x += this.vx;
-        this.y += this.vy;
-
-        if (this.x - this.size < 0 || this.x + this.size > this.canvasWidth) {
-            this.vx *= -1;
-        }
-        if (this.y - this.size < 0 || this.y + this.size > this.canvasHeight) {
-            this.vy *= -1;
-        }
-        
-        this.x = Math.max(this.size, Math.min(this.x, this.canvasWidth - this.size));
-        this.y = Math.max(this.size, Math.min(this.y, this.canvasHeight - this.size));
-    }
-
-    draw(ctx) {
-        ctx.fillStyle = PARTICLE_COLOR;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
-    }
-}
-
-const DynamicNetworkBackground = () => {
-    const canvasRef = useRef(null);
-    const particles = useRef([]);
-    const animationFrameId = useRef(null);
-    const containerRef = useRef(null);
-
-    const connectParticles = useCallback((ctx) => {
-        for (let i = 0; i < particles.current.length; i++) {
-            for (let j = i + 1; j < particles.current.length; j++) {
-                const p1 = particles.current[i];
-                const p2 = particles.current[j];
-                const dx = p1.x - p2.x;
-                const dy = p1.y - p2.y;
-                const distance = Math.sqrt(dx * dx + dy * dy);
-
-                if (distance < MAX_LINE_DISTANCE) {
-                    ctx.strokeStyle = LINE_COLOR;
-                    ctx.lineWidth = 0.5;
-                    ctx.beginPath();
-                    ctx.moveTo(p1.x, p1.y);
-                    ctx.lineTo(p2.x, p2.y);
-                    ctx.stroke();
-                }
-            }
-        }
-    }, []);
-
-    const animate = useCallback(() => {
-        const canvas = canvasRef.current;
-        if (!canvas) return;
-        const ctx = canvas.getContext('2d');
-        if (!ctx) return;
-
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        particles.current.forEach(particle => {
-            particle.update();
-            particle.draw(ctx);
-        });
-        connectParticles(ctx);
-
-        animationFrameId.current = requestAnimationFrame(animate);
-    }, [connectParticles]);
-
-    const initializeCanvasAndParticles = useCallback(() => {
-        const canvas = canvasRef.current;
-        const container = containerRef.current;
-        if (!canvas || !container) return;
-
-        const rect = container.getBoundingClientRect();
-        const dpr = window.devicePixelRatio || 1;
-
-        canvas.width = rect.width * dpr;
-        canvas.height = rect.height * dpr;
-        canvas.style.width = `${rect.width}px`;
-        canvas.style.height = `${rect.height}px`;
-
-        const ctx = canvas.getContext('2d');
-        if (!ctx) return;
-        ctx.scale(dpr, dpr);
-
-        particles.current = [];
-        for (let i = 0; i < PARTICLE_COUNT; i++) {
-            particles.current.push(new Particle(
-                Math.random() * rect.width,
-                Math.random() * rect.height,
-                rect.width,
-                rect.height
-            ));
-        }
-        
-        if (animationFrameId.current) {
-            cancelAnimationFrame(animationFrameId.current);
-        }
-        animate();
-
-    }, [animate]);
-
-    useEffect(() => {
-        initializeCanvasAndParticles();
-        const handleResize = () => initializeCanvasAndParticles();
-        window.addEventListener('resize', handleResize);
-        
-        let resizeObserver;
-        if (containerRef.current) {
-            resizeObserver = new ResizeObserver(handleResize);
-            resizeObserver.observe(containerRef.current);
-        }
-
-        return () => {
-            if (animationFrameId.current) {
-                cancelAnimationFrame(animationFrameId.current);
-            }
-            window.removeEventListener('resize', handleResize);
-            if (resizeObserver && containerRef.current) {
-                 // eslint-disable-next-line react-hooks/exhaustive-deps
-                resizeObserver.unobserve(containerRef.current); 
-            }
-        };
-    }, [initializeCanvasAndParticles]);
-
-    return (
-        <div 
-            ref={containerRef} 
-            style={{ 
-                position: 'absolute', 
-                top: 0, 
-                left: 0, 
-                width: '100%', 
-                height: '100%', 
-                zIndex: 0,
-                pointerEvents: 'none'
-            }}
-        >
-            <canvas ref={canvasRef} />
-        </div>
-    );
-};
-
-export default DynamicNetworkBackground;import Image from 'next/image';
-
-const focusAreas = [
-  {
-    title: "Architectural Frontiers",
-    description: "Investigating the fundamental limits of today’s AI systems and exploring new paradigms that unlock greater capability and reliability.",
-  },
-  {
-    title: "Societal Impact",
-    description: "Examining how AI reshapes work, well-being, and global equity so society can adapt and thrive.",
-  },
-  {
-    title: "AI for Discovery",
-    description: "Exploring the potential of AI to accelerate breakthroughs across science, biology, climate, and beyond.",
-  },
-  {
-    title: "Benchmarking & Evaluation",
-    description: "Building rigorous, real-world benchmarks and evaluation suites to track AI capabilities and human-in-the-loop outcomes, steering research toward measurable progress.",
-  },
-  {
-    title: "Augmentative AI Products",
-    description: "Envisioning and crafting AI tools that amplify human creativity, judgment, and productivity, augmenting rather than replacing people in critical workflows.",
-  },
-  {
-    title: "Shared Prosperity",
-    description: "Creating technologies and policy insights that ensure the benefits of AI reach every human in the developing world.",
-  },
-];
-
-export default function FocusAreas() {
+Place `logo.png` in the `public` folder (use the supplied image or an SVG).
+==> components/Footer.js <==
+export default function Footer() {
   return (
-    <section className="px-8 py-24 max-w-6xl mx-auto">
-      <h2 className="font-serif text-4xl text-heading mb-12 flex items-center">
-        <Image
-          src="/focus.png"
-          width={40}
-          height={40}
-          alt="Network icon"
-          className="mr-3"
-        />
-        Focus Areas
-      </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {focusAreas.map(({ title, description }) => (
-          <div
-            key={title}
-            className="p-8 bg-[#f5f5f0] border border-gray-200 rounded-lg shadow-sm"
-          >
-            <h3 className="font-serif text-2xl text-ink mb-4">{title}</h3>
-            <p className="font-sans text-lg text-gray-700">{description}</p>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}export default function Footer() {
-  return (
-    <footer className="px-4 sm:px-0 py-8 text-center text-sm text-gray-500">
+    <footer className="py-8 text-center text-sm text-gray-500">
       © {new Date().getFullYear()} Symbolia Labs. All rights reserved.
     </footer>
   )
-}import Image from 'next/image'
+}
+==> components/Header.js <==
+import Image from 'next/image'
 import Link from 'next/link'
-import { useState } from 'react'
-import { Menu, X } from 'lucide-react'      // ↓ add to package.json if not installed
-
 
 export default function Header() {
-  const [open, setOpen] = useState(false)
   return (
-    <header className="sticky top-0 z-20 bg-white/60 backdrop-blur-md">
-      <div className="mx-auto flex items-center justify-between px-4 sm:px-6 py-4 max-w-6xl">
-        {/* ─── logo ───────────────────────────────────────────── */}
-        <Link href="/" className="flex items-center space-x-3 shrink-0">
-          <Image src="/logo.png" alt="Symbolia Labs Logo" width={35} height={35} priority />
-          <span className="font-serif text-3xl sm:text-4xl text-heading">Symbolia Labs</span>
-        </Link>
-
-        {/* ─── desktop nav ───────────────────────────────────── */}
-        <nav className="hidden md:flex space-x-8 font-sans text-heading uppercase tracking-wide">
-          <Link href="/research" className="hover:text-accent">Research</Link>
-          <Link href="/programs" className="hover:text-accent">Programs</Link>
-          <Link href="/about"    className="hover:text-accent">About</Link>
-        </nav>
-
-        {/* ─── mobile menu button ────────────────────────────── */}
-        <button
-          onClick={() => setOpen(!open)}
-          className="md:hidden p-2 rounded focus:outline-none focus:ring-2 focus:ring-accent"
-          aria-label="Toggle navigation"
-        >
-          {open ? <X size={24} /> : <Menu size={24} />}
-        </button>
-      </div>
-
-      {/* ─── mobile dropdown ────────────────────────────────── */}
-      {open && (
-        <nav className="md:hidden bg-white border-t border-gray-100">
-          <Link href="/research" className="block px-6 py-3 font-sans uppercase tracking-wide border-b border-gray-100 hover:bg-gray-50" onClick={() => setOpen(false)}>Research</Link>
-          <Link href="/programs" className="block px-6 py-3 font-sans uppercase tracking-wide border-b border-gray-100 hover:bg-gray-50" onClick={() => setOpen(false)}>Programs</Link>
-          <Link href="/about"    className="block px-6 py-3 font-sans uppercase tracking-wide hover:bg-gray-50" onClick={() => setOpen(false)}>About</Link>
-        </nav>
-      )}
+    <header className="flex items-center justify-between px-6 py-4 bg-white/60 backdrop-blur-md sticky top-0 z-20">
+      <Link href="/" className="flex items-center space-x-3">
+        <Image src="/logo.png" alt="Symbolia Labs Logo" width={35} height={35} />
+        <span className="font-serif text-4xl text-heading">Symbolia Labs</span>
+      </Link>
+      <nav className="space-x-8 font-sans text-heading uppercase tracking-wide">
+        <Link href="/research" className="hover:text-accent">Research</Link>
+        <Link href="/programs" className="hover:text-accent">Programs</Link>
+        <Link href="/about" className="hover:text-accent">About</Link>
+      </nav>
     </header>
   )
-}// components/Hero.js
+}
+==> components/Hero.js <==
+// components/Hero.js
 
 import DynamicNetworkBackground from './DynamicNetworkBackground';
 
 export default function Hero() {
   return (
-    <section className="px-4 sm:px-8 py-20 sm:py-24 max-w-6xl mx-auto bg-[#f5f5f0] shadow-lg overflow-hidden">
+    <section className="px-8 py-24 max-w-6xl mx-auto bg-[#f5f5f0] shadow-lg overflow-hidden">
       <div className="flex flex-col-reverse lg:flex-row items-center">
         {/* ─── Text column ───────────────────────────────────────── */}
         <div className="mt-8 lg:mt-0 lg:w-1/2 relative z-10">
-          <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl leading-tight text-ink mb-6">
+          <h1 className="font-serif text-5xl md:text-6xl leading-tight text-ink mb-6">
             Shaping the Next Decade of AI
           </h1>
           <p className="font-sans text-ink mb-4">
-            We’re a research and policy lab dedicated to advancing AI in India and its positive impact on society.
+            We’re a research and policy lab dedicated to advancing AI and its positive impact on society.
           </p>
           <p className="font-sans text-ink">
-            By uniting frontier research, rigorous benchmarking, policy insight, and human-centred design, we aim to steer AI toward a future that multiplies scientific progress, safeguards social welfare, and distributes opportunity.
+            Our team studies limitations of existing AI, how AI can accelerate scientific discovery, what AI means for human society and well being, and how to ensure the benefits of AI accrue to every human.
           </p>
         </div>
 
         {/* ─── Animation column ─────────────────────────────────── */}
-        <div className="lg:w-1/2 w-full h-60 sm:h-72 lg:h-[300px] relative">
+        <div className="lg:w-1/2 w-full h-80 lg:h-[300px] relative">
           <div className="absolute inset-0">
             <DynamicNetworkBackground />
           </div>
@@ -397,6 +160,8 @@ export default function Hero() {
     </section>
   );
 }
+
+==> components/Layout.js <==
 import Header from './Header'
 import Footer from './Footer'
 
@@ -409,36 +174,9 @@ export default function Layout({ children }) {
     </>
   )
 }
-import Link from 'next/link';
 
-export default function ResearchCard({ title, authors, date, description, slug }) {
-  return (
-    // Enhanced shadow, slightly darker border, and ensuring consistent professional fonts (already set globally)
-    <div className="bg-white border border-gray-300 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out flex flex-col h-full">
-      <h3 className="font-serif text-xl lg:text-2xl text-ink mb-2 leading-tight">
-        {/* If a slug is provided, make the title a link */}
-        {slug ? (
-          <Link href={`/research/${slug}`} className="hover:text-primary transition-colors duration-150">
-            {title}
-          </Link>
-        ) : (
-          title
-        )}
-      </h3>
-      <p className="font-sans text-xs text-gray-500 mb-3"> {/* Slightly smaller author/date text */}
-        {authors} – <span className="text-gray-400">{date}</span>
-      </p>
-      <p className="font-sans text-sm text-gray-700 mb-4 flex-grow leading-relaxed"> {/* Slightly smaller description, more line height */}
-        {description}
-      </p>
-      {slug && (
-        <Link href={`/research/${slug}`} className="font-sans text-sm text-primary hover:underline self-start mt-auto">
-          Read more
-        </Link>
-      )}
-    </div>
-  );
-}{
+==> jsconfig.json <==
+{
   "compilerOptions": {
     "baseUrl": ".",          // root of the project
     "paths": {
@@ -446,51 +184,8 @@ export default function ResearchCard({ title, authors, date, description, slug }
     }
   }
 }
-import fs from 'fs';
-import { join } from 'path';
-import matter from 'gray-matter';
 
-const postsDirectory = join(process.cwd(), 'pages/content');
-
-export function getPostSlugs() {
-  // We only want to get files that end with .html
-  return fs.readdirSync(postsDirectory).filter(file => file.endsWith('.html'));
-}
-
-export function getPostBySlug(slug, fields = []) {
-  const realSlug = slug.replace(/\.html$/, '');
-  const fullPath = join(postsDirectory, `${realSlug}.html`);
-  const fileContents = fs.readFileSync(fullPath, 'utf8');
-  // gray-matter can parse front-matter from any text file, including .html
-  const { data, content } = matter(fileContents);
-
-  const items = {};
-
-  // Ensure only the minimal needed data is exposed
-  fields.forEach((field) => {
-    if (field === 'slug') {
-      items[field] = realSlug;
-    }
-    if (field === 'content') {
-      items[field] = content;
-    }
-
-    if (typeof data[field] !== 'undefined') {
-      items[field] = data[field];
-    }
-  });
-
-  return items;
-}
-
-export function getAllPosts(fields = []) {
-  const slugs = getPostSlugs();
-  const posts = slugs
-    .map((slug) => getPostBySlug(slug, fields))
-    // sort posts by date in descending order
-    .sort((post1, post2) => (post1.date > post2.date ? -1 : 1));
-  return posts;
-}
+==> next.config.mjs <==
 import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
 
 initOpenNextCloudflareForDev();
@@ -502,10 +197,14 @@ const nextConfig = {
 
 export default nextConfig; 
 
+
+==> open-next.config.ts <==
 // open-next.config.ts
 import { defineCloudflareConfig } from "@opennextjs/cloudflare";
 
 export default defineCloudflareConfig();   // default settings are fine
+
+==> package.json <==
 {
   "name": "symbolia-labs-website",
   "version": "0.1.0",
@@ -519,9 +218,6 @@ export default defineCloudflareConfig();   // default settings are fine
   },
   "dependencies": {
     "@opennextjs/cloudflare": "^1.0.4",
-    "@tailwindcss/typography": "^0.5.16",
-    "gray-matter": "^4.0.3",
-    "lucide-react": "^0.511.0",
     "next": "latest",
     "nodemailer": "^7.0.3",
     "react": "latest",
@@ -534,9 +230,9 @@ export default defineCloudflareConfig();   // default settings are fine
     "wrangler": "^4.16.1"
   }
 }
-   Bud1           
-                                                           . j sIlocbl                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           _ a p p . j sIlocblob      A   .������      _ d o c u m e n t . j sIlocblob        .������      a b o u t . j sIlocblob      �   .������      c o n t e n tIlocblob     3   2������      c o n t e n tlg1Scomp            c o n t e n tmoDDblob   R�p@� �A    c o n t e n tmodDblob   R�p@� �A    c o n t e n tph1Scomp            c o n t e n tvSrnlong       i n d e x . j sIlocblob     �   .������      p r o g r a m s . j sIlocblob     g   .������      r e s e a r c hIlocblob     �   .������      r e s e a r c hvSrnlong       r e s e a r c h . j sIlocblob     �   .������                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      @      �                                        @      �                                          @      �                                          @                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   E  
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       DSDB                                 `          �                                         @      �                                          @      �                                          @                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              import '@/styles/globals.css'
+
+==> pages/_app.js <==
+import '@/styles/globals.css'
 import Layout from '@/components/Layout'
 
 export default function App({ Component, pageProps }) {
@@ -545,24 +241,8 @@ export default function App({ Component, pageProps }) {
       <Component {...pageProps} />
     </Layout>
   )
-}// pages/_document.js
-import { Html, Head, Main, NextScript } from 'next/document'
-
-export default function Document() {
-   return (
-     <Html lang="en">
-       <Head>
-         {/* Mobile viewport & PWA safe-area inset for iOS notch devices */}
-         <meta name="viewport" content="width=device-width,initial-scale=1" />
-         <meta name="theme-color" content="#fafaf6" />
-       </Head>
-       <body className="bg-[#fafaf6] text-ink antialiased">
-         <Main />
-         <NextScript />
-       </body>
-     </Html>
-   )
 }
+==> pages/about.js <==
 import Link from 'next/link'
 
 export default function About() {
@@ -573,7 +253,7 @@ export default function About() {
         Symbolia Labs is an independent research and policy lab based in Bengaluru, India, committed to steering artificial intelligence toward outcomes that elevate human flourishing.
       </p>
       <p className="font-sans text-lg">
-        We pair frontier technical work with rigorous social-science analysis to answer a single question: How do we build an AI future that is unmistakably people‑centred, bearing in mind an entangled world?
+        We pair frontier technical work with rigorous social-science analysis to answer a single question: How do we build an AI future that is unmistakably human‑centred?
       </p>
       <p className="font-sans text-lg">
         If you are an investor who shares our ethos and wants to support our mission,{' '}
@@ -591,6 +271,8 @@ export default function About() {
     </section>
   )
 }
+
+==> pages/index.js <==
 import Hero from '@/components/Hero'
 import FocusAreas from '@/components/FocusAreas'
 
@@ -602,58 +284,19 @@ export default function Home() {
     </>
   )
 }
-import ResearchCard from '@/components/ResearchCard'
 
-const projectList = [
-  {
-    slug: 'inference-time-steering',
-    title: 'Coming Soon',
-    authors: 'X',
-    date: 'June 2025',
-    description: '.',
-  },
-  // Add your other projects here
-];
-
-export default function Programs() {
-  return (
-    <section className="px-4 sm:px-8 py-16 max-w-6xl mx-auto">
-      <div className="text-center mb-16">
-        <h1 className="font-serif text-5xl md:text-6xl text-ink mb-4">Our Programs</h1>
-        <p className="font-sans text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-          Explore our ongoing programs and initiatives propelling our mission to shape the future of AI in India. 
-        </p>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10">
-        {projectList.map((project) => (
-          <ResearchCard
-            key={project.slug}
-            title={project.title}
-            authors={project.authors}
-            date={project.date}
-            description={project.description}
-            slug={project.slug}
-          />
-        ))}
-      </div>
-    </section>
-  )
-}import ResearchCard from '@/components/ResearchCard'; // Adjust path if necessary
+==> pages/research.js <==
+import ResearchCard from '@/components/ResearchCard'; // Adjust path if necessary
 import Image from 'next/image';
 
 // Placeholder research data (assuming this remains the same as your provided selection)
 const researchArticles = [
   {
-    slug: "labor-and-growth-in-the-AI-decade-review-and-research-agenda",
-    title: "Navigating Labor and Growth in the AI Decade: A Review and Research Agenda",
-    date: 'June 2025',
-    description: "AI’s economic impact is both vast and highly uncertain. Current forecasts \
-    swing from unprecedented prosperity to severe inequality, but most rely on narrow models that \
-    ignore the feedback loops linking technology, policy, and society. In this writeup, we review recent research on automation \
-    exposure, firm-level adoption, and accelerating capabilities, and find large knowledge gaps. \
-    We propose a more realistic path forward that demands richer modeling, better data, interdisciplinary work, and \
-    adaptive governance to channel AI toward broadly shared prosperity.",
+    slug: 'neuro-symbolic-foundations',
+    title: 'Gradual disempowerment and the intelligence curse',
+    authors: 'X, Y',
+    date: 'February 2025',
+    description: 'Placeholder.',
   },
 ];
 
@@ -663,7 +306,7 @@ export default function Research() {
       <div className="text-center mb-16"> {/* Increased bottom margin */}
         <h1 className="font-serif text-5xl md:text-6xl text-ink mb-4">Our Research</h1> {/* Increased bottom margin */}
         <p className="font-sans text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed"> {/* Slightly darker text, wider max-width */}
-          How can we bring forth a positive AI-future? Explore our latest papers, policy reports, and perspective articles in our different focus areas. 
+          How can we create an AI-future that is human centered? Explore our latest papers, policy reports, and perspective articles in our different focus areas. 
         </p>
       </div>
 
@@ -682,7 +325,7 @@ export default function Research() {
       </div>
 
       {/* Grid for Research Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10"> {/* Increased y-gap */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10"> {/* Increased y-gap */}
         {researchArticles.map((article) => (
           <ResearchCard
             key={article.slug}
@@ -696,48 +339,16 @@ export default function Research() {
       </div>
     </section>
   );
-}   Bud1            �                                                           g ] . j sIl                                          	 [ s l u g ] . j sIlocblob      A   .������                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  @      �                                        @      �                                          @      �                                          @                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   E   �                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       DSDB                                 `      �                                               @      �                                          @      �                                          @                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          import { useRouter } from 'next/router';
-
-export default function ResearchArticle() {
-  const router = useRouter();
-  const { slug } = router.query;
-
-  return (
-    <section className="px-4 sm:px-8 py-16 max-w-3xl mx-auto text-center">
-      <h1 className="font-serif text-4xl md:text-5xl text-ink mb-6 capitalize">
-        {slug ? slug.replace(/-/g, ' ') : 'Loading...'}
-      </h1>
-      <div className="bg-gray-100 rounded-lg p-8 mt-8">
-        <p className="font-sans text-lg text-gray-700 mb-4">
-          Artificial Intelligence (AI) stands poised to reshape economies and societies profoundly 
-          over the coming decades, yet the nature and magnitude of its impact remain subjects of 
-          intense debate and considerable uncertainty. We review the diverse spectrum of projections 
-          concerning AI's consequences for labor markets, productivity, wages, and economic growth, and 
-          synthesize contrasting viewpoints, ranging from utopian visions of unprecedented prosperity to 
-          dystopian scenarios of widespread disruption and inequality. We scrutinize the methodologies 
-          underpinning these forecasts, and identify limitations in predicting technological breakthroughs, 
-          modeling complex task dynamics and real-world frictions, and capturing crucial feedback loops 
-          between technology, policy, and society. Our analysis advocates for a more integrated, granular, 
-          and context-aware research agenda focusing on skill dynamics, institutional influences, human-AI 
-          collaboration, and the valuation of non-market impacts. Ultimately, we argue that navigating the 
-          AI future requires interdisciplinary research, proactive policy interventions, and a commitment 
-          to responsible innovation centered on human values to ensure that AI's potential benefits humanity 
-          broadly.
-
-        </p>
-        {/* Placeholder for future interactive content */}
-        <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-gray-400">
-          .
-        </div>
-      </div>
-    </section>
-  );
-} module.exports = {
+}
+==> postcss.config.js <==
+module.exports = {
   plugins: {
     tailwindcss: {},
     autoprefixer: {},
   },
-}@tailwind base;
+}
+==> styles/globals.css <==
+@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
@@ -780,13 +391,8 @@ body::before {
   stroke-width: 2;
   fill: none;
 }
-
-@media (max-width: 640px) {
-  body::before {
-    opacity: 0.2;           /* lighter grid */
-    background-size: 32px 32px;
-  }
-}/** @type {import('tailwindcss').Config} */
+==> tailwind.config.js <==
+/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -808,6 +414,8 @@ module.exports = {
   },
   plugins: [],
 }
+
+==> wrangler.jsonc <==
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "symbolia-labs",
