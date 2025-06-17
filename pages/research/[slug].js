@@ -81,6 +81,7 @@ export async function getStaticProps({ params }) {
   const { slug } = params;
   const contentDir = join(process.cwd(), 'pages/content');
   const fullPath = join(contentDir, `${slug}.html`);
+  console.log('Attempting to read:', fullPath);
   let html = fs.readFileSync(fullPath, 'utf8');
   const match = html.match(/<body[^>]*>([\s\S]*)<\/body>/i);
   if (match) {
