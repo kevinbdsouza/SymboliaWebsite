@@ -50,6 +50,9 @@ export default function ResearchArticle({ post }) {
 
     // This effect will track which heading is currently visible in the viewport.
     useEffect(() => {
+        // Ensure post.headings exists before trying to use it
+        if (!post || !post.headings) return;
+
         const observer = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {
@@ -67,7 +70,7 @@ export default function ResearchArticle({ post }) {
         });
 
         return () => observer.disconnect();
-    }, [post.headings]);
+    }, [post]); // Depend on the whole post object for safety
 
     // Function to smoothly scroll to a heading.
     const scrollTo = (id) => {
@@ -80,6 +83,10 @@ export default function ResearchArticle({ post }) {
             window.history.pushState(null, '', `#${id}`);
         }
     };
+
+    if (!post) {
+        return <div>Loading...</div>
+    }
 
     return (
         <div className="bg-white py-16 sm:py-24">
@@ -98,7 +105,7 @@ export default function ResearchArticle({ post }) {
                             <div className="p-6 bg-[#f5f5f0] rounded-lg shadow-sm">
                                 <h2 className="font-serif text-xl text-ink mb-4">Table of Contents</h2>
                                 <nav>
-                                    {post.headings.map((h) => (
+                                    {post.headings && post.headings.map((h) => (
                                         <TocEntry
                                             key={h.slug}
                                             heading={h}
@@ -126,13 +133,16 @@ export default function ResearchArticle({ post }) {
 
 // This function gets the static paths for all the research articles.
 export async function getStaticPaths() {
-    const posts = getAllPosts(['slug']);
+    // Also fetch 'date' so the sort function in getAllPosts doesn't fail
+    const posts = getAllPosts(['slug', 'date']);
     return {
-        paths: posts.map((post) => ({
-            params: {
-                slug: post.slug,
-            },
-        })),
+        paths: posts.map((post) => {
+            return {
+                params: {
+                    slug: post.slug,
+                },
+            }
+        }),
         fallback: false,
     };
 }
@@ -146,26 +156,16 @@ export async function getStaticProps({ params }) {
         'content',
     ]);
 
-    // The content is already HTML, so no conversion is needed.
     const content = post.content || '';
 
-    // Extract headings for TOC from the HTML content
     const headings = [];
-    // Updated regex to add IDs to headings if they don't have one
-    const headingRegex = /<h([1-3])(?: id="([^"]+)")?>(.+?)<\/h\1>/g;
+    const headingRegex = /<h([1-3]) id="([^"]+)">(.+?)<\/h\1>/g;
     let match;
-    let updatedContent = content;
-
     while ((match = headingRegex.exec(content)) !== null) {
-        let slug = match[2];
-        const text = match[3];
-        if (!slug) {
-            slug = text.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
-        }
         headings.push({
             level: parseInt(match[1], 10),
-            slug: slug,
-            text: text,
+            slug: match[2],
+            text: match[3].replace(/<[^>]*>?/gm, ''), // Strip any inner HTML from heading text
         });
     }
 
@@ -173,7 +173,7 @@ export async function getStaticProps({ params }) {
         props: {
             post: {
                 ...post,
-                content: content,
+                content,
                 headings,
             },
         },
