@@ -446,6 +446,51 @@ export default function ResearchCard({ title, authors, date, description, slug }
     }
   }
 }
+import fs from 'fs';
+import { join } from 'path';
+import matter from 'gray-matter';
+
+const postsDirectory = join(process.cwd(), 'pages/content');
+
+export function getPostSlugs() {
+  // We only want to get files that end with .html
+  return fs.readdirSync(postsDirectory).filter(file => file.endsWith('.html'));
+}
+
+export function getPostBySlug(slug, fields = []) {
+  const realSlug = slug.replace(/\.html$/, '');
+  const fullPath = join(postsDirectory, `${realSlug}.html`);
+  const fileContents = fs.readFileSync(fullPath, 'utf8');
+  // gray-matter can parse front-matter from any text file, including .html
+  const { data, content } = matter(fileContents);
+
+  const items = {};
+
+  // Ensure only the minimal needed data is exposed
+  fields.forEach((field) => {
+    if (field === 'slug') {
+      items[field] = realSlug;
+    }
+    if (field === 'content') {
+      items[field] = content;
+    }
+
+    if (typeof data[field] !== 'undefined') {
+      items[field] = data[field];
+    }
+  });
+
+  return items;
+}
+
+export function getAllPosts(fields = []) {
+  const slugs = getPostSlugs();
+  const posts = slugs
+    .map((slug) => getPostBySlug(slug, fields))
+    // sort posts by date in descending order
+    .sort((post1, post2) => (post1.date > post2.date ? -1 : 1));
+  return posts;
+}
 import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
 
 initOpenNextCloudflareForDev();
@@ -474,6 +519,8 @@ export default defineCloudflareConfig();   // default settings are fine
   },
   "dependencies": {
     "@opennextjs/cloudflare": "^1.0.4",
+    "@tailwindcss/typography": "^0.5.16",
+    "gray-matter": "^4.0.3",
     "lucide-react": "^0.511.0",
     "next": "latest",
     "nodemailer": "^7.0.3",
@@ -598,7 +645,7 @@ import Image from 'next/image';
 // Placeholder research data (assuming this remains the same as your provided selection)
 const researchArticles = [
   {
-    slug: "navigating-labor-and-growth-in-the-AI-decade:-a-review-and-research-agenda",
+    slug: "labor-and-growth-in-the-AI-decade-review-and-research-agenda",
     title: "Navigating Labor and Growth in the AI Decade: A Review and Research Agenda",
     date: 'June 2025',
     description: "AI’s economic impact is both vast and highly uncertain. Current forecasts \
