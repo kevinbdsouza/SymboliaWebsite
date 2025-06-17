@@ -20,11 +20,6 @@ export default function ResearchCard({ title, authors, date, description, slug }
       <p className="font-sans text-sm text-gray-700 mb-4 flex-grow leading-relaxed"> {/* Slightly smaller description, more line height */}
         {description}
       </p>
-      {slug && (
-        <Link href={`/research/${slug}`} className="font-sans text-sm text-primary hover:underline self-start mt-auto">
-          Read more
-        </Link>
-      )}
     </div>
   );
 }
