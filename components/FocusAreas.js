@@ -30,11 +30,11 @@ const focusAreas = [
 export default function FocusAreas() {
   return (
     <section className="px-8 py-24 max-w-6xl mx-auto">
-      <h2 className="font-serif text-4xl text-heading mb-12 flex items-center">
+      <h2 className="font-serif text-3xl text-heading mb-12 flex items-center">
         <Image
           src="/focus.png"
-          width={40}
-          height={40}
+          width={30}
+          height={30}
           alt="Network icon"
           className="mr-3"
         />
@@ -46,7 +46,7 @@ export default function FocusAreas() {
             key={title}
             className="p-8 bg-[#f5f5f0] border border-gray-200 rounded-lg shadow-sm"
           >
-            <h3 className="font-serif text-2xl text-ink mb-4">{title}</h3>
+            <h3 className="font-serif text-3xl text-ink mb-4">{title}</h3>
             <p className="font-sans text-lg text-gray-700">{description}</p>
           </div>
         ))}

@@ -1,40 +1,74 @@
 import { useRouter } from 'next/router';
+import fs from 'fs';
+import path from 'path';
+import DOMPurify from 'isomorphic-dompurify';
 
-export default function ResearchArticle() {
+// Import your articles list to get metadata like the title
+import { researchArticles } from '@/data/articles';
+
+export default function ResearchArticle({ title, content }) {
   const router = useRouter();
-  const { slug } = router.query;
+
+  // Show a loading state while the page is being generated
+  if (router.isFallback) {
+    return <div>Loading...</div>;
+  }
+
+  // Sanitize the HTML content before rendering it
+  // This is a CRITICAL security step to prevent XSS attacks
+  const sanitizedContent = DOMPurify.sanitize(content);
 
   return (
-    <section className="px-4 sm:px-8 py-16 max-w-3xl mx-auto text-center">
-      <h1 className="font-serif text-4xl md:text-5xl text-ink mb-6 capitalize">
-        {slug ? slug.replace(/-/g, ' ') : 'Loading...'}
-      </h1>
-      <div className="bg-gray-100 rounded-lg p-8 mt-8">
-        <p className="font-sans text-lg text-gray-700 mb-4">
-          Artificial Intelligence (AI) stands poised to reshape economies and societies profoundly 
-          over the next two decades, yet the nature and magnitude of its impact remain subjects of 
-          intense debate and considerable uncertainty. We review the diverse spectrum of projections 
-          concerning AI's consequences for labor markets, productivity, wages, and economic growth, 
-          and synthesize contrasting viewpoints, ranging from utopian visions of unprecedented 
-          prosperity to dystopian scenarios of widespread disruption and inequality. Central to this 
-          review is a critique of existing forecasting methodologies and models, highlighting their 
-          inherent limitations, particularly the prevalent lack of realistic, integrated scenarios 
-          capable of capturing complex feedback loops between technology, policy, and society. Drawing 
-          upon recent economic research, including analyses of automation risk exposure [1] and 
-          firm-level AI adoption [2], alongside considerations of accelerating AI capabilities [3], 
-          we identify significant gaps in current understanding. We argue that realizing AI's immense 
-          potential while mitigating substantial risks requires a more grounded, nuanced, and adaptive 
-          approach to analysis and policymaking than is currently common. We propose a path forward, 
-          emphasizing the need for improved modeling techniques, enhanced data collection, 
-          interdisciplinary collaboration, and a focus on adaptive governance strategies designed to 
-          steer AI development towards shared prosperity and enhanced human well-being across a range of 
-          plausible futures.
-        </p>
-        {/* Placeholder for future interactive content */}
-        <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-gray-400">
-          .
-        </div>
-      </div>
+    <section className="px-4 sm:px-8 py-16 max-w-3xl mx-auto">
+      {/* The 'prose' class from @tailwindcss/typography applies beautiful styling.
+        prose-lg makes the font size larger for readability.
+        prose-h1:text-ink applies a specific color to h1 tags inside the article.
+      */}
+      <div
+        className="prose prose-lg max-w-none prose-h1:text-ink prose-h2:text-ink"
+        dangerouslySetInnerHTML={{ __html: sanitizedContent }}
+      />
     </section>
   );
-} 
+}
+
+// This function tells Next.js which pages to build
+export async function getStaticPaths() {
+  // Get the list of slugs from your articles data
+  const paths = researchArticles.map(article => ({
+    params: { slug: article.slug },
+  }));
+
+  return {
+    paths,
+    fallback: false, // Any path not returned by getStaticPaths will result in a 404
+  };
+}
+
+// This function fetches the data for each page at build time
+export async function getStaticProps({ params }) {
+  const { slug } = params;
+  
+  // Find the article metadata from your central list
+  const article = researchArticles.find(a => a.slug === slug);
+
+  // Construct the full path to the HTML file
+  const filePath = path.join(process.cwd(), 'data', `${slug}.html`);
+  
+  let content;
+  try {
+    // Read the file content
+    content = fs.readFileSync(filePath, 'utf8');
+  } catch (error) {
+    // If the file doesn't exist, handle it gracefully
+    return { notFound: true };
+  }
+  
+  // Return the title and HTML content as props to the component
+  return {
+    props: {
+      title: article.title,
+      content,
+    },
+  };
+}

@@ -2,18 +2,18 @@ import ResearchCard from '@/components/ResearchCard'
 
 const projectList = [
   {
-    slug: 'inference-time-steering',
+    slug: 'distributed-research-lab',
     title: 'Coming Soon',
     authors: 'X',
     date: 'June 2025',
-    description: '.',
+    description: '',
   },
   // Add your other projects here
 ];
 
 export default function Programs() {
   return (
-    <section className="px-4 sm:px-8 py-16 max-w-6xl mx-auto">
+    <section className="px-4 sm:px-8 py-16 max-w-7xl">
       <div className="text-center mb-16">
         <h1 className="font-serif text-5xl md:text-6xl text-ink mb-4">Our Programs</h1>
         <p className="font-sans text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
