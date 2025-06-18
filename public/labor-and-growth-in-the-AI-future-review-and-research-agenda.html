@@ -11,7 +11,7 @@
 
 
 
-<title>ai-labour_growth</title>
+<title>labor-and-growth-in-the-AI-future-review-and-research-agenda</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -373,6 +373,16 @@ collaboration. Ultimately, we argue that navigating the AI future
 requires interdisciplinary research, proactive policy interventions, and
 a commitment to responsible innovation centered on human values to
 ensure that AI’s potential benefits humanity broadly.</p>
+<p><em>Disclaimer: This analysis is intentionally long to cover as much
+ground as possible in a single document, feel free to jump to sections
+of interest. Many themes can be writeups of their own, and we will be
+following up with subsequent research covering them in more detail. The
+review and analysis is not India specific and covers research from
+across the world. We will have a follow-up writeup covering what this
+means for India in particular. We use the word AGI in this writeup
+without clarifying exactly what it means. We consider this word to be
+not very useful but use it here for the lack of a better
+alternative.</em></p>
 <div id="the-ai-paradox-unprecedented-potential-amidst-deep-uncertainty" class="section level2">
 <h2>The AI Paradox: Unprecedented Potential Amidst Deep Uncertainty</h2>
 <p>The contemporary wave of AI represents more than just an incremental
@@ -386,9 +396,9 @@ accelerating pace of AI development suggests the potential for
 transformations that are not only deep but also rapid [<a href="https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/the-economic-potential-of-generative-ai-the-next-productivity-frontier">McKinsey</a>],
 challenging established economic structures and social norms within the
 coming decades.</p>
-<p>This potential precipitates a central tension that dominates
-discourse and policy debates. On one hand, AI is heralded as a catalyst
-for unprecedented productivity growth, capable of augmenting human
+<p>This potential surfaces a central tension that dominates discourse
+and policy debates. On one hand, AI is heralded as a catalyst for
+unprecedented productivity growth, capable of augmenting human
 capabilities, automating tedious tasks, accelerating scientific
 discovery, and ultimately fostering widespread economic prosperity and
 solutions to global challenges [<a href="https://wwnorton.com/books/the-second-machine-age/">Brynjolfsson,
@@ -403,9 +413,10 @@ D. et al. 2019</a>, <a href="https://www.nber.org/papers/w28453">Korinek, A. et
 et al. 2023</a>].</p>
 <p>Adding to this tension, there exists disagreement and uncertainty
 regarding the magnitude, nature, and timing of its actual impact.
-Enthusiastic projections of AI-driven prosperity [<a href="https://www.aeaweb.org/conference/2020/preliminary/paper/Tz2HdRna">AEA</a>]
-clash with the persistent reality of sluggish aggregate productivity
-growth observed across many developed economies for over a decade [<a href="https://cepr.org/voxeu/columns/should-ai-stay-or-should-ai-go-promises-and-perils-ai-productivity-and-growth">CEPR</a>].
+Enthusiastic projections of AI-driven prosperity [<a href="https://conference.nber.org/conf_papers/f204793.pdf">Alderucci, D.
+et al. 2019</a>] clash with the persistent reality of sluggish aggregate
+productivity growth observed across many developed economies for over a
+decade [<a href="https://cepr.org/voxeu/columns/should-ai-stay-or-should-ai-go-promises-and-perils-ai-productivity-and-growth">CEPR</a>].
 This disconnect highlights the complexity of translating technological
 possibility into widespread economic benefit. The relationship between
 AI and its economic consequences, especially for labor, remains
@@ -437,15 +448,15 @@ grappling with the full spectrum of potential outcomes, critically
 evaluating the tools used for prediction, and broadening the analytical
 lens to encompass the multifaceted nature of human well-being in an
 increasingly AI-mediated world.</p>
-<p>This analysis is structured as follows. In section 1, we review the
-wide range of projections concerning AI’s impact on productivity, labor
-markets, and wages, highlighting the optimistic and pessimistic
-viewpoints present in the literature. In section 2, we study the
+<p>This analysis is structured as follows. In section 1 and 2, we review
+the wide range of projections concerning AI’s impact on productivity,
+labor markets, and wages, highlighting the optimistic and pessimistic
+viewpoints present in the literature. In section 3, we study the
 modeling approaches used to generate these forecasts, examining specific
 models and discussing recurring methodological limitations. In section
-3, we expand the analysis to consider the implications of AI for human
+4, we expand the analysis to consider the implications of AI for human
 flourishing, exploring potential effects on work quality, social
-dynamics, and individual well-being. In section 4, we discuss the path
+dynamics, and individual well-being. In section 5, we discuss the path
 forward, outlining key research priorities needed to address the
 identified knowledge gaps, drawing lessons from historical technological
 transitions, and summarizing relevant policy discussions. Finally, we
@@ -483,8 +494,8 @@ E. et al. 2019</a>].</p>
 </div>
 <div id="pessimistic-visions" class="section level3">
 <h3>Pessimistic Visions</h3>
-<p>Conversely, pessimistic scenarios highlight AI’s potential as a
-widespread substitute for human labor. As AI capabilities advance,
+<p>On the other hand, pessimistic scenarios highlight AI’s potential as
+a widespread substitute for human labor. As AI capabilities advance,
 particularly towards Artificial General Intelligence (AGI) or highly
 capable narrow AI systems, they could automate not only routine tasks
 but also a significant portion of complex cognitive and creative work
@@ -520,8 +531,8 @@ them? [<a href="https://www.aeaweb.org/articles?id=10.1257/jep.33.2.3">Acemoglu,
 D. et al. 2019</a>]. Differing views on the elasticity of labor demand
 in new, AI-enabled sectors and the capacity for new task creation also
 drive divergent predictions. Finally, implicit or explicit assumptions
-about the effectiveness and nature of policy responses play a crucial
-role; optimists may assume proactive measures to manage transitions and
+about the effectiveness and nature of policy responses play a role;
+optimists may assume proactive measures to manage transitions and
 redistribute gains, while pessimists may anticipate policy gridlock or
 capture by vested interests [<a href="https://www.nber.org/papers/w28453">Korinek, A. et
 al. 2021</a>].</p>
@@ -533,33 +544,33 @@ socio-economic systems. Optimistic narratives may implicitly rely on
 assumptions of market efficiency, smooth adjustments, and the capacity
 for effective redistribution, perhaps underestimating frictions, power
 imbalances, and path dependencies inherent in real-world transitions.
-Pessimistic narratives, conversely, tend to emphasize these frictions,
-the potential for winner-take-all dynamics, and the historical tendency
-for technological gains to be unevenly distributed, at least initially.
+Pessimistic narratives tend to emphasize these frictions, the potential
+for winner-take-all dynamics, and the historical tendency for
+technological gains to be unevenly distributed, at least initially.
 Understanding these underlying conceptual frameworks is as vital as
 scrutinizing quantitative parameters when evaluating the credibility and
 implications of different forecasts.</p>
-<p>The very language used to frame the discussion, predominantly
-focusing on “automation” versus “augmentation”, carries significant
+<p>We believe that the very language used to frame the discussion,
+predominantly focusing on “automation” versus “augmentation”, carries
 weight. This framing can influence public attitudes, shape research
 directions, and steer policy orientations. A dominant narrative
 emphasizing job substitution might foster protectionist sentiments or
 prioritize passive income schemes, potentially leading to
 underinvestment in crucial areas like workforce retraining, lifelong
-learning, or research into human-AI collaboration. Conversely, a
-narrative centered on augmentation could stimulate proactive policies
-aimed at developing complementary skills and fostering environments
-where humans and AI work synergistically. Thus, the framing itself can
-act as a partially self-fulfilling prophecy, influencing the trajectory
-of AI deployment and its ultimate societal consequences.</p>
+learning, or research into human-AI collaboration. Whereas, a narrative
+centered on augmentation could stimulate proactive policies aimed at
+developing complementary skills and fostering environments where humans
+and AI work synergistically. Thus, the framing itself can act as a
+partially self-fulfilling prophecy, influencing the trajectory of AI
+deployment and its ultimate societal consequences.</p>
 </div>
 </div>
 <div id="divergent-futures-projections-of-ais-economic-impact" class="section level2">
 <h2>Divergent Futures: Projections of AI’s Economic Impact</h2>
 <p>Forecasts regarding AI’s economic impact over the coming years and
-decades span a remarkably wide spectrum, reflecting deep uncertainties
-about the technology’s trajectory and its interaction with complex
-socio-economic systems.</p>
+decades span a wide spectrum, reflecting deep uncertainties about the
+technology’s trajectory and its interaction with complex socio-economic
+systems.</p>
 <div id="productivity-growth-explosion-or-marginal" class="section level3">
 <h3>Productivity Growth: Explosion or Marginal?</h3>
 <p>A central debate revolves around AI’s potential to break the trend of
@@ -609,23 +620,24 @@ decelerated significantly in the mid-2000s, well before the recent AI
 surge, and has remained low since [<a href="https://cepr.org/voxeu/columns/should-ai-stay-or-should-ai-go-promises-and-perils-ai-productivity-and-growth">CEPR</a>].
 Aggregate statistics, admittedly backward-looking, show little evidence
 thus far that AI has reversed this trend, even as firm-level studies
-report gains [<a href="https://www.aeaweb.org/conference/2020/preliminary/paper/Tz2HdRna">AEA</a>].
-Research examining the period up to the late 2010s found no discernible
-relationship between AI exposure and aggregate employment or wage
-growth, suggesting that while AI was substituting for tasks, its overall
-labor market consequences were not yet detectable at a macro level [<a href="https://shapingwork.mit.edu/wp-content/uploads/2023/10/Paper_Artificial-Intelligence-and-Jobs-Evidence-from-Online-Vacancies.pdf">Acemoglu,
+report gains [<a href="https://conference.nber.org/conf_papers/f204793.pdf">Alderucci, D.
+et al. 2019</a>]. Research examining the period up to the late 2010s
+found no discernible relationship between AI exposure and aggregate
+employment or wage growth, suggesting that while AI was substituting for
+tasks, its overall labor market consequences were not yet detectable at
+a macro level [<a href="https://shapingwork.mit.edu/wp-content/uploads/2023/10/Paper_Artificial-Intelligence-and-Jobs-Evidence-from-Online-Vacancies.pdf">Acemoglu,
 D. et al. 2024</a>]. Historical context suggests that implementation
 lags are common with transformative technologies, as complementary
 investments, organizational restructuring, and skill development take
 time [<a href="https://www.nber.org/system/files/working_papers/w24001/w24001.pdf">Brynjolfsson,
-E. et al. 2019</a>]. Structural economic factors, such as Baumol’s cost
-disease, might limit aggregate growth even if AI boosts productivity in
-specific sectors. If AI primarily enhances productivity in activities
+E. et al. 2019</a>]. Structural economic factors, such as <a href="https://en.wikipedia.org/wiki/Baumol_effect">Baumol’s cost
+disease</a>, might limit aggregate growth even if AI boosts productivity
+in specific sectors. If AI primarily enhances productivity in activities
 with saturating demand or if sectors less amenable to AI (like
 labor-intensive personal services) continue to absorb a large share of
 employment, the overall growth impact could be muted [<a href="https://cepr.org/voxeu/columns/should-ai-stay-or-should-ai-go-promises-and-perils-ai-productivity-and-growth">CEPR</a>].</p>
-<p>The divergence between observed firm-level productivity gains [<a href="https://www.aeaweb.org/conference/2020/preliminary/paper/Tz2HdRna">AEA</a>]
-and lagging aggregate statistics [<a href="https://www.nber.org/system/files/working_papers/w24001/w24001.pdf">Brynjolfsson,
+<p>The divergence between observed firm-level productivity gains [<a href="https://conference.nber.org/conf_papers/f204793.pdf">Alderucci, D.
+et al. 2019</a>] and lagging aggregate statistics [<a href="https://www.nber.org/system/files/working_papers/w24001/w24001.pdf">Brynjolfsson,
 E. et al. 2019</a>] points towards diffusion barriers, the necessity of
 substantial complementary investments, or the possibility that current
 AI applications, while beneficial at the micro level, are either too
@@ -654,13 +666,13 @@ market share. While this boosts productivity at the firm level for
 adopters, it might paradoxically slow down aggregate productivity growth
 if it stifles competition, hinders the diffusion of innovations to the
 rest of the economy, and leads to resource misallocation towards
-dominant firms. This micro-macro disconnect represents a fundamental
-challenge for economic modeling: accurately scaling observations from
-individual firms or workers to economy-wide predictions requires
-accounting for factors beyond the technology itself, such as market
-structure, competitive dynamics, regulatory environments, and the pace
-of organizational adaptation, elements often simplified or omitted in
-current models.</p>
+dominant firms. We believe that this micro-macro disconnect represents a
+fundamental challenge for economic modeling: accurately scaling
+observations from individual firms or workers to economy-wide
+predictions requires accounting for factors beyond the technology
+itself, such as market structure, competitive dynamics, regulatory
+environments, and the pace of organizational adaptation, elements often
+simplified or omitted in current models.</p>
 </div>
 <div id="labor-market-dynamics-job-creation-destruction-and-transformation" class="section level3">
 <h3>Labor Market Dynamics: Job Creation, Destruction, and
@@ -681,15 +693,14 @@ impact of automation risk exposure find correlations with outcomes such
 as reduced employment growth, lower wage growth, or shifts in firm
 dynamics, potentially indicating that automation pressures are already
 manifesting in labor market data [<a href="https://shapingwork.mit.edu/wp-content/uploads/2023/10/Paper_Artificial-Intelligence-and-Jobs-Evidence-from-Online-Vacancies.pdf">Acemoglu,
-D. et al. 2024</a>]. Such research often highlights differential
-impacts, suggesting that workers with certain skill sets, in specific
-industries, or employed by particular types of firms may be more
-vulnerable [<a href="https://shapingwork.mit.edu/wp-content/uploads/2023/10/Paper_Artificial-Intelligence-and-Jobs-Evidence-from-Online-Vacancies.pdf">Acemoglu,
+D. et al. 2024</a>]. Such research highlights differential impacts,
+suggesting that workers with certain skill sets, in specific industries,
+or employed by particular types of firms may be more vulnerable [<a href="https://shapingwork.mit.edu/wp-content/uploads/2023/10/Paper_Artificial-Intelligence-and-Jobs-Evidence-from-Online-Vacancies.pdf">Acemoglu,
 D. et al. 2024</a>].</p>
 <p>Estimates of the number of jobs potentially automated or displaced by
-AI vary dramatically but often paint a picture of significant
-disruption. Figures range from nearly 40% of global employment being
-exposed to AI [<a href="https://www.imf.org/en/Blogs/Articles/2024/01/14/ai-will-transform-the-global-economy-lets-make-sure-it-benefits-humanity">IMF</a>]
+AI vary dramatically but paint a picture of significant disruption.
+Figures range from nearly 40% of global employment being exposed to AI
+[<a href="https://www.imf.org/en/Blogs/Articles/2024/01/14/ai-will-transform-the-global-economy-lets-make-sure-it-benefits-humanity">IMF</a>]
 to specific predictions like 300 million full-time jobs globally [<a href="https://explodingtopics.com/blog/ai-replacing-jobs">Howarth, J.
 2025</a>], potentially rising to 800 million worldwide by 2030 [<a href="https://seo.ai/blog/ai-replacing-jobs-statistics">SEO</a>]. Other
 studies suggest 85 million jobs could be displaced globally by 2025 [<a href="https://www.forbes.com/councils/forbestechcouncil/2024/03/12/the-future-of-work-embracing-ais-job-creation-potential/">Forbes</a>].
@@ -741,9 +752,9 @@ points towards a future of collaboration [<a href="https://knowledge.wharton.upe
 C. 2025</a>]. Real-world usage data from Anthropic’s Claude model
 indicated that 57% of its use involved augmenting human capabilities
 (e.g., validation, learning, brainstorming) compared to 43% involving
-direct automation [30]. Even when tasks within an occupation are
-automated, this may lead to a transformation of the job role rather than
-its elimination [<a href="https://www.bls.gov/opub/mlr/2025/article/incorporating-ai-impacts-in-bls-employment-projections.htm">BLS</a>].
+direct automation [<a href="https://www.anthropic.com/news/the-anthropic-economic-index">Anthropic,
+2025</a>]. Even when tasks within an occupation are automated, this may
+lead to a transformation of the job role rather than its elimination [<a href="https://www.bls.gov/opub/mlr/2025/article/incorporating-ai-impacts-in-bls-employment-projections.htm">BLS</a>].
 McKinsey found fewer than 5% of occupations could be entirely automated
 with current technology, although a majority (60%) could see 30% or more
 of their constituent activities automated [<a href="https://jfsdigital.org/wp-content/uploads/2017/01/JFS212Final%EF%BC%88%E5%B7%B2%E6%8B%96%E7%A7%BB%EF%BC%89-6.pdf">Halal,
@@ -754,22 +765,23 @@ suggesting task substitution is occurring at the firm level [<a href="https://sh
 D. et al. 2024</a>]. However, these studies have not yet detected
 significant impacts on overall employment or wages at the broader
 industry or occupation level [<a href="https://shapingwork.mit.edu/wp-content/uploads/2023/10/Paper_Artificial-Intelligence-and-Jobs-Evidence-from-Online-Vacancies.pdf">Acemoglu,
-D. et al. 2024</a>]. Conversely, other research links AI-related
-innovations within firms to faster overall employment growth [<a href="https://www.aeaweb.org/conference/2020/preliminary/paper/Tz2HdRna">AEA</a>].
-Overall, the critical question is whether the pace of augmentation and
-new task creation can keep pace with the rate of automation, and whether
-the workforce can adapt quickly enough through retraining and skill
-acquisition.</p>
-<p>The apparent dichotomy between augmentation and automation may be
-overly simplistic. Evidence suggests AI often performs both functions
-simultaneously. Automation of certain tasks within a job [<a href="https://jfsdigital.org/wp-content/uploads/2017/01/JFS212Final%EF%BC%88%E5%B7%B2%E6%8B%96%E7%A7%BB%EF%BC%89-6.pdf">Halal,
+D. et al. 2024</a>]. On the contrary, other research links AI-related
+innovations within firms to faster overall employment growth [<a href="https://conference.nber.org/conf_papers/f204793.pdf">Alderucci, D.
+et al. 2019</a>]. Overall, we think the critical question is whether the
+pace of augmentation and new task creation can keep pace with the rate
+of automation, and whether the workforce can adapt quickly enough
+through retraining and skill acquisition.</p>
+<p>We feel that the apparent dichotomy between augmentation and
+automation may be overly simplistic. Evidence suggests AI often performs
+both functions simultaneously. Automation of certain tasks within a job
+[<a href="https://jfsdigital.org/wp-content/uploads/2017/01/JFS212Final%EF%BC%88%E5%B7%B2%E6%8B%96%E7%A7%BB%EF%BC%89-6.pdf">Halal,
 W. et al. 2016</a>] might free up worker time. Whether this leads to
 workforce reduction (automation’s displacement effect) or reallocation
-to new, potentially higher-value tasks depends critically on factors
-like firm strategy, the elasticity of demand for the firm’s output
-(whether productivity gains translate into enough increased demand to
-retain workers), and the rate at which entirely new tasks are created
-within the economy [<a href="https://shapingwork.mit.edu/wp-content/uploads/2023/10/Paper_Artificial-Intelligence-and-Jobs-Evidence-from-Online-Vacancies.pdf">Acemoglu,
+to new, potentially higher-value tasks depends on factors like firm
+strategy, the elasticity of demand for the firm’s output (whether
+productivity gains translate into enough increased demand to retain
+workers), and the rate at which entirely new tasks are created within
+the economy [<a href="https://shapingwork.mit.edu/wp-content/uploads/2023/10/Paper_Artificial-Intelligence-and-Jobs-Evidence-from-Online-Vacancies.pdf">Acemoglu,
 D. et al. 2024</a>]. Capturing this dynamic balance between task
 displacement, productivity effects, and new task creation remains a
 significant challenge for current economic models.</p>
@@ -804,17 +816,16 @@ transition compared to men [<a href="https://www.mckinsey.com/~/media/mckinsey/m
 <p>A notable shift is occurring in the types of jobs most affected.
 While earlier waves of automation primarily impacted routine manual and
 cognitive tasks, often concentrated in lower- and middle-wage roles [<a href="https://www.brookings.edu/wp-content/uploads/2019/01/2019.01_BrookingsMetro_Automation-AI_Report_Muro-Maxim-Whiton-FINAL-version.pdf">Muro,
-M. et al. 2019</a>], AI’s capabilities, particularly in areas like
-natural language processing and complex pattern recognition, mean that
-higher-wage, white-collar, knowledge-based occupations are increasingly
-exposed [<a href="https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/the-economic-potential-of-generative-ai-the-next-productivity-frontier">McKinsey</a>].
+M. et al. 2019</a>], AI’s capabilities, particularly in general NLP,
+agentic coding, and computer use, mean that higher-wage, white-collar,
+knowledge-based occupations are increasingly exposed [<a href="https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/the-economic-potential-of-generative-ai-the-next-productivity-frontier">McKinsey</a>].
 Empirical studies confirm that AI exposure at the firm level is
 associated with declines in demand for some previously sought-after
 skills, alongside the emergence of demand for entirely new skills [<a href="https://shapingwork.mit.edu/wp-content/uploads/2023/10/Paper_Artificial-Intelligence-and-Jobs-Evidence-from-Online-Vacancies.pdf">Acemoglu,
 D. et al. 2024</a>]. This dynamic fuels concerns about a growing skills
 gap, with estimates suggesting as much as 39% of core worker skills
 could become outdated by 2030 [<a href="https://sustainabilitymag.com/articles/wef-report-the-impact-of-ai-driving-170m-new-jobs-by-2030">WEF</a>].
-Consequently, there is a perceived urgent need for large-scale
+Because of this, there is a perceived urgent need for large-scale
 reskilling and upskilling initiatives, fostering a culture of lifelong
 learning to enable workforce adaptation [<a href="https://sustainabilitymag.com/articles/wef-report-the-impact-of-ai-driving-170m-new-jobs-by-2030">WEF</a>].</p>
 <p>The impact of AI is demonstrably heterogeneous across multiple
@@ -825,25 +836,26 @@ industry [<a href="https://www.mckinsey.com/capabilities/mckinsey-digital/our-in
 geography [<a href="https://sustainabilitymag.com/articles/wef-report-the-impact-of-ai-driving-170m-new-jobs-by-2030">WEF</a>],
 gender [<a href="https://www.mckinsey.com/~/media/mckinsey/mckinsey%20global%20institute/our%20research/generative%20ai%20and%20the%20future%20of%20work%20in%20america/generative-ai-and-the-future-of-work-in-america-vf1.pdf">McKinsey,
 2023</a>], and age [<a href="https://www.imf.org/en/Blogs/Articles/2024/01/14/ai-will-transform-the-global-economy-lets-make-sure-it-benefits-humanity">IMF</a>].
-For instance, Anthropic’s index found AI usage peaking in mid-to-high
-wage occupations like programmers and data scientists, but dropping off
-at both the lowest (perhaps due to task nature, e.g., manual dexterity)
-and highest ends (perhaps due to complexity or bespoke nature of tasks)
-[30]. The IMF notes that advanced economies face greater immediate risks
-but also more opportunities from AI compared to developing economies,
-due to the higher proportion of jobs susceptible to AI’s influence [<a href="https://www.imf.org/en/Blogs/Articles/2024/01/14/ai-will-transform-the-global-economy-lets-make-sure-it-benefits-humanity">IMF</a>].
+For instance, <a href="https://www.anthropic.com/news/the-anthropic-economic-index">Anthropic’s
+index</a> found AI usage peaking in mid-to-high wage occupations like
+programmers and data scientists, but dropping off at both the lowest
+(perhaps due to task nature, e.g., manual dexterity) and highest ends
+(perhaps due to complexity or bespoke nature of tasks). The IMF notes
+that advanced economies face greater immediate risks but also more
+opportunities from AI compared to developing economies, due to the
+higher proportion of jobs susceptible to AI’s influence [<a href="https://www.imf.org/en/Blogs/Articles/2024/01/14/ai-will-transform-the-global-economy-lets-make-sure-it-benefits-humanity">IMF</a>].
 This multidimensional heterogeneity implies that aggregate forecasts,
 while useful for illustrating potential scale, inevitably mask crucial
 distributional consequences. Understanding who benefits, who loses, and
-where interventions are most needed requires a granular analytical
-approach that considers these intersecting factors, a key limitation in
-current research.</p>
+where interventions are most needed as a developing nation requires a
+granular analytical approach that considers these intersecting factors,
+a key limitation in current research.</p>
 </div>
 </div>
 <div id="wage-effects-and-the-future-of-inequality" class="section level3">
 <h3>Wage Effects and the Future of Inequality</h3>
 <p>AI’s potential impact on wages and income distribution is another
-area of significant divergence and concern. Optimistic scenarios link
+area of major divergence and concern. Optimistic scenarios link
 AI-driven productivity gains to potential wage increases, assuming these
 gains are shared with the workforce [<a href="https://www.cbo.gov/publication/61147">CBO</a>, <a href="https://www.nber.org/system/files/working_papers/w23928/w23928.pdf">Aghion,
 P. et al. 2017</a>]. If AI complements workers, enhancing their
@@ -858,17 +870,17 @@ transitions towards roles requiring higher skills or leveraging AI
 effectively, there could be an overall shift towards higher-wage jobs
 [<a href="https://www.mckinsey.com/~/media/mckinsey/mckinsey%20global%20institute/our%20research/generative%20ai%20and%20the%20future%20of%20work%20in%20america/generative-ai-and-the-future-of-work-in-america-vf1.pdf">McKinsey,
 2023</a>].</p>
-<p>Conversely, pessimistic scenarios emphasize the risk of wage
-stagnation or decline, particularly for workers whose tasks are easily
-automated by AI. If AI primarily substitutes for human labor, it could
-reduce overall labor demand, putting downward pressure on wages and
-hiring, especially if the productivity effects are modest or if the
-benefits accrue primarily to capital owners rather than labor [<a href="https://www.cbo.gov/publication/61147">CBO</a>, <a href="https://www.nber.org/system/files/working_papers/w23928/w23928.pdf">Aghion,
+<p>However, pessimistic scenarios emphasize the risk of wage stagnation
+or decline, particularly for workers whose tasks are easily automated by
+AI. If AI primarily substitutes for human labor, it could reduce overall
+labor demand, putting downward pressure on wages and hiring, especially
+if the productivity effects are modest or if the benefits accrue
+primarily to capital owners rather than labor [<a href="https://www.cbo.gov/publication/61147">CBO</a>, <a href="https://www.nber.org/system/files/working_papers/w23928/w23928.pdf">Aghion,
 P. et al. 2017</a>]. Historical analysis suggests automation in certain
-sectors has been linked to wage decline [<a href="https://seo.ai/blog/ai-replacing-jobs-statistics">SEO</a>]. There
-is a concern of the potential shift in the distribution of income away
-from labor and towards capital. If AI primarily functions as a
-substitute for labor, automating tasks previously performed by humans,
+sectors is linked to wage decline [<a href="https://seo.ai/blog/ai-replacing-jobs-statistics">SEO</a>].
+Mainly, there is a concern of the potential shift in the distribution of
+income away from labor and towards capital. If AI primarily functions as
+a substitute for labor, automating tasks previously performed by humans,
 economic theory suggests it could decrease the overall demand for labor
 relative to capital, thereby reducing labor’s share of national income
 and increasing the share accruing to owners of capital and AI
@@ -890,11 +902,12 @@ relationship between automation exposure and wages provide mixed but
 often concerning evidence, with some finding negative wage impacts for
 workers in occupations with higher automation risk scores [<a href="https://shapingwork.mit.edu/wp-content/uploads/2023/10/Paper_Artificial-Intelligence-and-Jobs-Evidence-from-Online-Vacancies.pdf">Acemoglu,
 D. et al. 2024</a>].</p>
-<p>There is also evidence suggesting AI could exacerbate wage inequality
-within firms [<a href="https://www.aeaweb.org/conference/2020/preliminary/paper/Tz2HdRna">AEA</a>].
-A broader concern is labor market polarization, where workers who
-possess the skills to effectively utilize AI see their productivity and
-wages increase, while those who cannot adapt fall further behind [<a href="https://www.imf.org/en/Blogs/Articles/2024/01/14/ai-will-transform-the-global-economy-lets-make-sure-it-benefits-humanity">IMF</a>].
+<p>We also found evidence suggesting AI could exacerbate wage inequality
+within firms [<a href="https://conference.nber.org/conf_papers/f204793.pdf">Alderucci, D.
+et al. 2019</a>], along with a broader concern of labor market
+polarization, where workers who possess the skills to effectively
+utilize AI see their productivity and wages increase, while those who
+cannot adapt fall further behind [<a href="https://www.imf.org/en/Blogs/Articles/2024/01/14/ai-will-transform-the-global-economy-lets-make-sure-it-benefits-humanity">IMF</a>].
 If AI disproportionately complements high-income workers, it could lead
 to a significant widening of the wage gap [<a href="https://www.imf.org/en/Blogs/Articles/2024/01/14/ai-will-transform-the-global-economy-lets-make-sure-it-benefits-humanity">IMF</a>].
 Moreover, the productivity gains captured by firms adopting AI are
@@ -907,11 +920,7 @@ costs, returns to scale in data and computing power, and network
 effects, could lead to increased market concentration. This
 concentration might allow dominant firms to capture a disproportionate
 share of the value created, potentially limiting broad-based wage growth
-[<a href="https://cepr.org/voxeu/columns/should-ai-stay-or-should-ai-go-promises-and-perils-ai-productivity-and-growth">CEPR</a>].
-Additionally, AI-powered tools like dynamic pricing algorithms could
-potentially enhance firms’ market power and lead to supra-competitive
-prices, further shifting surplus away from consumers and potentially
-workers [<a href="https://cepr.org/voxeu/columns/should-ai-stay-or-should-ai-go-promises-and-perils-ai-productivity-and-growth">CEPR</a>].</p>
+[<a href="https://cepr.org/voxeu/columns/should-ai-stay-or-should-ai-go-promises-and-perils-ai-productivity-and-growth">CEPR</a>].</p>
 <p>Empirical evidence on AI’s aggregate wage effects remains limited and
 inconclusive. Studies examining recent years have generally failed to
 detect a significant relationship between occupational or industry-level
@@ -919,28 +928,29 @@ AI exposure and overall wage growth, suggesting widespread effects have
 yet to materialize or are difficult to isolate [<a href="https://shapingwork.mit.edu/wp-content/uploads/2023/10/Paper_Artificial-Intelligence-and-Jobs-Evidence-from-Online-Vacancies.pdf">Acemoglu,
 D. et al. 2024</a>]. While the dominant expectation leans towards
 increased inequality [<a href="https://www.imf.org/en/Blogs/Articles/2024/01/14/ai-will-transform-the-global-economy-lets-make-sure-it-benefits-humanity">IMF</a>],
-some theoretical arguments suggest AI could potentially reduce
-inequality by automating tasks previously performed by high-skilled
-workers, thereby narrowing the gap with lower-skilled workers [<a href="https://cepr.org/voxeu/columns/should-ai-stay-or-should-ai-go-promises-and-perils-ai-productivity-and-growth">CEPR</a>],
+some arguments suggest AI could potentially reduce inequality by
+automating tasks previously performed by high-skilled workers, thereby
+narrowing the gap with lower-skilled workers [<a href="https://cepr.org/voxeu/columns/should-ai-stay-or-should-ai-go-promises-and-perils-ai-productivity-and-growth">CEPR</a>],
 or by lowering barriers to skill acquisition and improving access to
 opportunities [<a href="https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/superagency-in-the-workplace-empowering-people-to-unlock-ais-full-potential-at-work">Mayer,
 H. et al.</a>].</p>
 <p>The ultimate impact of AI on wages appears highly contingent not just
 on the technology itself, but critically on the interplay between
-technology, market power, and policy responses. The distribution of AI’s
-economic benefits will be heavily influenced by factors such as the
-bargaining power of labor (affected by union density and labor laws -
-factors that are understudied), the competitive structure of markets
-(influenced by antitrust policy), minimum wage laws, and government
-policies regarding taxation (e.g., how capital gains versus labor income
-are taxed), redistribution (e.g., social safety nets, unemployment
-benefits, potential universal basic income schemes), and investment in
-public goods like education and retraining programs [<a href="https://cepr.org/voxeu/columns/should-ai-stay-or-should-ai-go-promises-and-perils-ai-productivity-and-growth">CEPR</a>].
+technology, market power, and policy responses. We believe the
+distribution of AI’s economic benefits will be heavily influenced by
+factors such as the bargaining power of labor (affected by union density
+and labor laws - factors that are understudied), the competitive
+structure of markets (influenced by antitrust policy), minimum wage
+laws, and government policies regarding taxation (e.g., how capital
+gains versus labor income are taxed), redistribution (e.g., social
+safety nets, unemployment benefits, potential universal basic income
+schemes), and investment in public goods like education and retraining
+programs [<a href="https://cepr.org/voxeu/columns/should-ai-stay-or-should-ai-go-promises-and-perils-ai-productivity-and-growth">CEPR</a>].
 This implies that wage outcomes are not technologically predetermined
 but are subject to societal choices and institutional design. Predicting
 these outcomes therefore requires models capable of incorporating these
-endogenous institutional factors and policy feedback loops, representing
-a significant frontier for research.</p>
+endogenous institutional factors and policy feedback loops, and is an
+important frontier for research.</p>
 <table style="width:100%;">
 <colgroup>
 <col width="8%" />
@@ -1042,18 +1052,19 @@ quantitative forecasts and the uncertainty surrounding AI’s economic
 impact. The differences are driven not just by varying parameters but by
 fundamentally different assumptions about the nature of AI, its
 interaction with labor, and the broader economic and policy environment.
-<em>Note - This distills headline figures and methods; each study
-includes nuance and scenario details not fully captured here.</em></p>
+<em>Note - we distilled headline figures and methods in this table; each
+study includes nuance and scenario details not fully captured
+here.</em></p>
 </div>
 </div>
 <div id="modeling-the-unpredictable-scrutinizing-current-approaches" class="section level2">
 <h2>Modeling the Unpredictable: Scrutinizing Current Approaches</h2>
 <p>The wide divergence in forecasts presented in the previous section
 stems not only from inherent uncertainties about AI’s future but also
-from significant limitations in the methodologies used to model its
-impact. Critically evaluating these approaches is essential for
-understanding the reliability of current predictions and identifying
-areas for improvement.</p>
+from limitations in the methodologies used to model its impact.
+Critically evaluating these approaches is essential for understanding
+the reliability of current predictions and identifying areas for
+improvement.</p>
 <div id="case-studies-in-forecasting" class="section level3">
 <h3>Case Studies in Forecasting</h3>
 <p>Here we present critiques of three recent modeling efforts: <a href="https://www.nber.org/papers/w32255">Korinek &amp; Suh 2024</a>, <a href="https://economics.mit.edu/sites/default/files/2024-04/The%20Simple%20Macroeconomics%20of%20AI.pdf">Acemoglu,
@@ -1070,14 +1081,13 @@ significant for near-to-medium term relevance. By heavily emphasizing
 computational power as the primary driver and constraint, it largely
 abstracts away from crucial real-world frictions that inevitably shape
 the pace and pattern of automation. Factors such as regulatory
-landscapes, the complexities of societal acceptance and trust, data
-privacy regulations, the need for specialized hardware, and
-task-specific physical limitations (like dexterity) are inadequately
-incorporated. Its treatment of labor as a largely homogeneous input
-overlooks the critical dimensions of skill heterogeneity, task
-specialization, and the prevalence of hybrid automation scenarios where
-humans and machines work collaboratively, rather than AI achieving full
-task replacement.</p>
+landscapes, the need for specialized hardware, algorthmic breakthroughs
+not dependent on compute, and task-specific physical limitations are
+inadequately incorporated. Its treatment of labor as a largely
+homogeneous input overlooks other important dimensions of skill
+heterogeneity, task specialization, and the prevalence of hybrid
+automation scenarios where humans and machines work collaboratively,
+rather than AI achieving full task replacement.</p>
 </div>
 <div id="acemoglu-2025" class="section level4">
 <h4>Acemoglu (2025)</h4>
@@ -1127,9 +1137,9 @@ their predictions shows a fundamental lack of consensus and a clear
 understanding of AI’s likely trajectory and impact, signaling a pressing
 need for more robust and comprehensive modeling frameworks. Our argument
 here is not that every study/method needs to take into account all
-possible details and scenarios, but rather to understand where the
-deficiencies in models are before we take their forecasts too seriously
-for policy making purposes.</p>
+possible details and scenarios, but rather that we need to understand
+where the deficiencies in models are before we take their forecasts too
+seriously for policy making purposes.</p>
 </div>
 </div>
 <div id="general-methodological-challenges-in-ai-impact-studies" class="section level3">
@@ -1153,10 +1163,13 @@ future developments, especially given the accelerating pace observed in
 recent years [<a href="https://www.brookings.edu/wp-content/uploads/2019/11/2019.11.20_BrookingsMetro_What-jobs-are-affected-by-AI_Report_Muro-Whiton-Maxim.pdf">Muro,
 M. et al. 2019</a>]. If AI progress is non-linear or involves emergent
 capabilities, extrapolations based on past trends or existing
-theoretical frameworks may prove inadequate. The potential for AI to
-fundamentally alter the process of innovation itself adds another layer
-of complexity that current economic models are ill-equipped to
-handle.</p>
+theoretical frameworks may prove inadequate. For instance, many
+surprising capabilities have emerged in the last few years which experts
+would have labelled as implausible before, including <a href="https://arxiv.org/abs/2001.08361">the scaling laws</a>, <a href="https://arxiv.org/abs/2301.00234">in-context learning</a>, <a href="https://arxiv.org/abs/2501.12948">inference-time compute</a>,
+[reinforcement learning with verifiable rewards] (<a href="https://arxiv.org/abs/2411.15124" class="uri">https://arxiv.org/abs/2411.15124</a>), and many others. The
+potential for AI to fundamentally alter the process of innovation itself
+adds another layer of complexity that current economic models are
+ill-equipped to handle.</p>
 </div>
 <div id="modeling-task-dynamics" class="section level4">
 <h4>Modeling Task Dynamics</h4>
@@ -1186,15 +1199,16 @@ common for major technologies [<a href="https://www.nber.org/system/files/workin
 E. et al. 2019</a>].</li>
 <li><strong>Institutional &amp; Social Factors</strong>: Regulatory
 frameworks, data governance policies, labor market regulations, and
-intellectual property rights significantly shape AI deployment [<a href="https://academic.oup.com/spp/article-abstract/51/3/557/7595834?redirectedFrom=fulltext">Makridis,
+intellectual property rights shape AI deployment [<a href="https://academic.oup.com/spp/article-abstract/51/3/557/7595834?redirectedFrom=fulltext">Makridis,
 C. A. et al. 2024</a>]. Social acceptance, public trust, ethical
 concerns, and cultural attitudes towards automation also play crucial
 roles but are difficult to quantify and model [<a href="https://cepr.org/voxeu/columns/should-ai-stay-or-should-ai-go-promises-and-perils-ai-productivity-and-growth">CEPR</a>].</li>
 <li><strong>Paradigms, Algorithms &amp; Architectures</strong>: The
-language modeling paradigm may provide diminishing returns in the near
-future, while LLMs could be a dead end in terms of truly long-horizon
-agentic tasks, few-shot generalization, or novel scientific discovery.
-New algorithmic breakthroughs might be a bottleneck for AI
+current AI paradigm of next token prediction may provide diminishing
+returns in the near future. At the same time, LLMs could be a dead end
+in terms of truly long-horizon agentic tasks, few-shot generalization,
+or novel scientific discovery, even with RL post-training. Therefore,
+new algorithmic breakthroughs might be a bottleneck for AI
 progress.<br />
 </li>
 <li><strong>Task-Specific Constraints</strong>: Many tasks involve
@@ -1252,9 +1266,10 @@ basic income (UBI); the implementation (or lack thereof) of UBI would
 then feed back into labor supply decisions, consumption patterns, and
 potentially even the direction of future innovation. Current models
 rarely capture such policy endogeneity, the two-way interaction where
-policy shapes AI’s impact, and AI’s impact shapes policy responses.
-Without integrating these interdependencies, projections remain
-fragmented and potentially misleading guides for long-term strategy.</p>
+policy shapes AI’s impact, and AI’s impact shapes policy responses. We
+think that without integrating these interdependencies, projections
+remain fragmented and potentially misleading guides for long-term
+strategy.</p>
 </div>
 <div id="measurement-issues" class="section level4">
 <h4>Measurement Issues</h4>
@@ -1269,15 +1284,15 @@ comprehensive measurement remains difficult [<a href="https://www.anthropic.com/
 2025</a>]. Robust empirical analysis requires granular, high-frequency
 data on the actual adoption and use of specific AI technologies by
 firms, the evolving task content of jobs, shifts in skill demands,
-worker transitions between jobs and sectors, the prevalence of
-non-standard work arrangements facilitated by AI platforms, and reliable
-metrics for well-being. Such data are often scarce, proprietary, or
-non-existent, forcing researchers to rely on proxies (like patent data,
-occupational task descriptions, or broad industry classifications) that
-may not accurately reflect the nuances of AI deployment [<a href="https://www.nber.org/papers/w31325">Babina, T. et al. 2024</a>, <a href="https://shapingwork.mit.edu/wp-content/uploads/2023/10/Paper_Artificial-Intelligence-and-Jobs-Evidence-from-Online-Vacancies.pdf">Acemoglu,
+worker transitions between jobs and sectors, and the prevalence of
+non-standard work arrangements facilitated by AI platforms. Such data
+are often scarce, proprietary, or non-existent, forcing researchers to
+rely on proxies (like patent data, occupational task descriptions, or
+broad industry classifications) that may not accurately reflect the
+nuances of AI deployment [<a href="https://www.nber.org/papers/w31325">Babina, T. et al. 2024</a>, <a href="https://shapingwork.mit.edu/wp-content/uploads/2023/10/Paper_Artificial-Intelligence-and-Jobs-Evidence-from-Online-Vacancies.pdf">Acemoglu,
 D. et al. 2024</a>].</p>
-<p>Research examining the impact of automation risk exposure on labor
-market outcomes [<a href="https://shapingwork.mit.edu/wp-content/uploads/2023/10/Paper_Artificial-Intelligence-and-Jobs-Evidence-from-Online-Vacancies.pdf">Acemoglu,
+<p>We found that research examining the impact of automation risk
+exposure on labor market outcomes [<a href="https://shapingwork.mit.edu/wp-content/uploads/2023/10/Paper_Artificial-Intelligence-and-Jobs-Evidence-from-Online-Vacancies.pdf">Acemoglu,
 D. et al. 2024</a>] often relies on constructing indices of exposure
 based on occupational task content and linking them to observed
 outcomes. While valuable, such approaches face challenges in
@@ -1297,8 +1312,8 @@ requires careful consideration.</p>
 <div id="socio-political-context" class="section level4">
 <h4>Socio-political Context</h4>
 <p>There is a common implicit assumption within many economic forecasts
-of a relatively stable socio-political context. These models often fail
-to account for the possibility that AI itself could be a catalyst for
+of a relatively stable socio-political context. These models fail to
+account for the possibility that AI itself could be a catalyst for
 significant shifts in political economy. The prospect of large-scale
 labor displacement or dramatic increases in inequality [<a href="https://www.nber.org/papers/w28453">Korinek, A. et al. 2021</a>]
 could fuel social unrest, lead to demands for radical policy
@@ -1332,14 +1347,15 @@ conceptual differences inevitably lead to divergent predictions about
 AI’s economic role and impact. Progress in forecasting requires not only
 better data and more sophisticated techniques but also a clearer
 articulation and testing of these foundational assumptions about AI’s
-nature, evolution, and interaction with the economy. Comparing results
-from models built on explicitly different paradigms of AI development is
-important for understanding the range of possibilities and the
-sensitivity of outcomes to core assumptions. Integrating the full
-spectrum of perspectives, from optimistic visions of abundance to
+nature, evolution, and interaction with the economy. We feel that
+comparing results from models built on explicitly different paradigms of
+AI development is important for understanding the range of possibilities
+and the sensitivity of outcomes to core assumptions. Integrating the
+full spectrum of perspectives, from optimistic visions of abundance to
 pessimistic scenarios of disruption, into coherent and testable modeling
 frameworks is necessary to move beyond polarized debates towards a more
-nuanced understanding [<a href="https://www.aeaweb.org/conference/2020/preliminary/paper/Tz2HdRna">AEA</a>].</p>
+nuanced understanding [<a href="https://conference.nber.org/conf_papers/f204793.pdf">Alderucci, D.
+et al. 2019</a>].</p>
 </div>
 </div>
 </div>
@@ -1362,20 +1378,22 @@ to faster development of new technologies and solutions across various
 fields, creating a positive feedback loop for growth. However, potential
 countervailing factors could dampen AI’s positive impact on growth.
 Standard economic theory posits diminishing returns, even to powerful
-technologies like AI. Baumol’s “cost disease” might become more
-pronounced if AI primarily boosts productivity in easily automatable
-sectors while less automatable, labor-intensive sectors (like
-healthcare, education, or personal services) account for a growing share
-of the economy and employment, potentially dragging down aggregate
-productivity growth. If AI leads to sharply increased inequality and
-wage stagnation for a large portion of the population [<a href="https://www.nber.org/papers/w28453">Korinek, A. et al. 2021</a>],
-this could create demand-side constraints on growth, as consumption
-patterns shift and aggregate demand weakens. Misallocation of resources,
-whether towards rent-seeking activities enabled by AI or due to market
-concentration hindering efficient capital deployment, could also limit
-the overall growth dividend. The net effect on long-term economic growth
-remains uncertain and likely contingent on how these competing forces
-play out and how effectively policies manage the transition.</p>
+technologies like AI. <a href="https://en.wikipedia.org/wiki/Baumol_effect">Baumol’s cost
+disease</a> might become more pronounced if AI primarily boosts
+productivity in easily automatable sectors while less automatable,
+labor-intensive sectors (like healthcare, education, or personal
+services) account for a growing share of the economy and employment,
+potentially dragging down aggregate productivity growth. If AI leads to
+sharply increased inequality and wage stagnation for a large portion of
+the population [<a href="https://www.nber.org/papers/w28453">Korinek, A.
+et al. 2021</a>], this could create demand-side constraints on growth,
+as consumption patterns shift and aggregate demand weakens.
+Misallocation of resources, whether towards rent-seeking activities
+enabled by AI or due to market concentration hindering efficient capital
+deployment, could also limit the overall growth dividend. We feel that
+the net effect on long-term economic growth remains uncertain and likely
+contingent on how these competing forces play out and how effectively
+policies manage the transition.</p>
 </div>
 <div id="the-changing-nature-of-work-quality-autonomy-and-meaning" class="section level3">
 <h3>The Changing Nature of Work: Quality, Autonomy, and Meaning</h3>
@@ -1387,13 +1405,12 @@ dangerous tasks, freeing human workers to focus on more engaging
 activities that require creativity, critical thinking, complex
 problem-solving, and interpersonal skills like empathy [<a href="https://bernardmarr.com/what-is-the-impact-of-artificial-intelligence-ai-on-society/">Marr,
 B.</a>]. This shift could potentially lead to increased job satisfaction
-and a greater sense of accomplishment [<a href="https://bernardmarr.com/what-is-the-impact-of-artificial-intelligence-ai-on-society/">Marr,
-B.</a>]. AI tools can also serve as powerful assistants, augmenting
-human capabilities and potentially reducing errors related to fatigue
-[<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7605294/">Tai, M.
-C-T. 2020</a>]. If productivity gains are substantial and shared
-equitably, they could also potentially lead to reduced working hours and
-improved work-life balance.</p>
+and a greater sense of accomplishment. AI tools can also serve as
+powerful assistants, augmenting human capabilities and potentially
+reducing errors related to fatigue [<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7605294/">Tai, M. C-T.
+2020</a>]. If productivity gains are substantial and shared equitably,
+they could also potentially lead to reduced working hours and improved
+work-life balance.</p>
 <p>However, significant concerns exist regarding the potential
 degradation of work quality. The encroachment of AI into complex
 cognitive tasks previously considered the domain of skilled
@@ -1417,18 +1434,18 @@ E. G. 2024</a>], critics worry about opaque algorithms making
 consequential decisions without clear justification or avenues for
 appeal, thereby undermining worker agency and potentially human dignity
 [<a href="https://digitalcommons.lib.uconn.edu/cgi/viewcontent.cgi?article=1614&amp;context=law_review">Spitko,
-E. G. 2024</a>]. Maintaining meaningful human oversight and judgment in
-AI-driven decision-making processes is crucial for preserving autonomy
-and ensuring fairness [<a href="https://knowledge.wharton.upenn.edu/article/why-hybrid-intelligence-is-the-future-of-human-ai-collaboration/">Walther,
+E. G. 2024</a>]. We believe maintaining meaningful human oversight and
+judgment in AI-driven decision-making processes is crucial for
+preserving autonomy and ensuring fairness [<a href="https://knowledge.wharton.upenn.edu/article/why-hybrid-intelligence-is-the-future-of-human-ai-collaboration/">Walther,
 C. 2025</a>].</p>
 <p>Some experts express concern that as AI systems increasingly match or
 surpass human capabilities in intellectual and creative domains, it
 could lead to a sense of demoralization or existential unease about
 humanity’s unique role [<a href="https://imaginingthedigitalfuture.org/reports-and-publications/being-human-in-2035/">Anderson,
-J. et. al, 2025</a>]. Conversely, AI could also be viewed as a powerful
-tool that augments human potential, enabling individuals to tackle more
-ambitious challenges, acquire new skills more easily, and engage in more
-creative and fulfilling endeavors [<a href="https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/superagency-in-the-workplace-empowering-people-to-unlock-ais-full-potential-at-work">Mayer,
+J. et. al, 2025</a>]. On the other hand, AI could also be viewed as a
+powerful tool that augments human potential, enabling individuals to
+tackle more ambitious challenges, acquire new skills more easily, and
+engage in more creative and fulfilling endeavors [<a href="https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/superagency-in-the-workplace-empowering-people-to-unlock-ais-full-potential-at-work">Mayer,
 H. et al.</a>]. The ultimate effect on meaning may depend on how AI is
 integrated into work and society, whether it is perceived primarily as a
 replacement or as a collaborative partner.</p>
@@ -1451,12 +1468,11 @@ concentrate wealth and power [<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC
 2020</a>], posing risks to democratic governance and individual agency
 [<a href="https://shapingwork.mit.edu/power-and-progress/">Acemoglu, D.
 et al. 2023</a>]. The proliferation of AI-powered surveillance
-technologies could erode privacy and potentially chills dissent,
+technologies could erode privacy and potentially stifle dissent,
 constraining autonomy. Algorithmic bias represents another major equity
-challenge. AI systems are trained on data, and if that data reflects
-historical or societal biases (e.g., related to race, gender, age, or
-other characteristics), the AI can perpetuate or even amplify those
-biases [<a href="https://cepr.org/voxeu/columns/should-ai-stay-or-should-ai-go-promises-and-perils-ai-productivity-and-growth">CEPR</a>].
+challenge. If the data used to train AI systems reflects historical or
+societal biases (e.g., related to race, gender, age, or other
+characteristics), the AI can perpetuate or even amplify those biases [<a href="https://cepr.org/voxeu/columns/should-ai-stay-or-should-ai-go-promises-and-perils-ai-productivity-and-growth">CEPR</a>].
 This has implications in areas like hiring (where AI screening tools
 might discriminate against certain groups [<a href="https://digitalcommons.lib.uconn.edu/cgi/viewcontent.cgi?article=1614&amp;context=law_review">Spitko,
 E. G. 2024</a>]), credit scoring, loan applications, and even criminal
@@ -1475,10 +1491,11 @@ D. 2025</a>]. The increasing sophistication of AI agents might even blur
 the lines between human and artificial personalities, potentially
 creating confusion or eroding authenticity in social interactions [<a href="https://imaginingthedigitalfuture.org/reports-and-publications/being-human-in-2035/">Anderson,
 J. et. al, 2025</a>].</p>
-<p>However, AI also holds potential to enhance equity and access in
-certain domains. By lowering skill barriers for some tasks or providing
-personalized education and training, AI could potentially expand
-opportunities for individuals who previously faced disadvantages [<a href="https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/superagency-in-the-workplace-empowering-people-to-unlock-ais-full-potential-at-work">Mayer,
+<p>However, we think that AI also holds potential to enhance equity and
+access in certain domains. By lowering skill barriers for some tasks or
+providing personalized education and training, AI could potentially
+expand opportunities for individuals who previously faced disadvantages
+[<a href="https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/superagency-in-the-workplace-empowering-people-to-unlock-ais-full-potential-at-work">Mayer,
 H. et al.</a>]. AI applications in areas like healthcare diagnostics [<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7605294/">Tai, M. C-T.
 2020</a>] or credit scoring could, if designed carefully to mitigate
 bias, improve access for underserved populations. Realizing these
@@ -1497,14 +1514,14 @@ cognitive skills, such as critical thinking, memory, or navigation, a
 phenomenon termed “self-inflicted AI dementia” [<a href="https://imaginingthedigitalfuture.org/reports-and-publications/being-human-in-2035/">Anderson,
 J. et. al, 2025</a>]. If AI consistently provides answers or performs
 cognitive tasks for us, our own abilities in those areas might diminish
-over time. Conversely, AI also holds potential to enhance human
+over time. At the same time, AI also holds potential to enhance human
 cognition. It can serve as a powerful tool for learning, providing
 access to vast amounts of information and personalized educational
 experiences [<a href="https://imaginingthedigitalfuture.org/reports-and-publications/being-human-in-2035/">Anderson,
 J. et. al, 2025</a>]. AI can act as a creative partner, stimulating new
 ideas and augmenting human innovative thinking [<a href="https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/superagency-in-the-workplace-empowering-people-to-unlock-ais-full-potential-at-work">Mayer,
 H. et al.</a>].</p>
-<p>Emotionally, AI’s impact is multifaceted. On one hand, AI-powered
+<p>Emotionally, AI’s impact is again varied. On one hand, AI-powered
 applications like socially assistive robots are being developed to
 provide companionship and therapeutic support, particularly for
 vulnerable populations like the elderly, potentially alleviating
@@ -1530,7 +1547,8 @@ about losing control over powerful AI systems [<a href="https://pmc.ncbi.nlm.nih
 E. G. 2024</a>] contribute to these existential anxieties. Some experts
 even raise long-term concerns about existential risks associated with
 superintelligent AI, although the probability and timeline of such
-scenarios are highly debated [<a href="https://cepr.org/voxeu/columns/should-ai-stay-or-should-ai-go-promises-and-perils-ai-productivity-and-growth">CEPR</a>].</p>
+scenarios are highly debated [<a href="https://cepr.org/voxeu/columns/should-ai-stay-or-should-ai-go-promises-and-perils-ai-productivity-and-growth">CEPR</a>],
+and therefore we don’t elaborate on them further here.</p>
 </div>
 <div id="human-agency-and-the-need-for-value-alignment" class="section level3">
 <h3>Human Agency and the Need for Value Alignment</h3>
@@ -1549,11 +1567,12 @@ analytical power [<a href="https://knowledge.wharton.upenn.edu/article/why-hybri
 C. 2025</a>]. This requires preserving human oversight, especially in
 high-stakes or ethically sensitive decisions [<a href="https://digitalcommons.lib.uconn.edu/cgi/viewcontent.cgi?article=1614&amp;context=law_review">Spitko,
 E. G. 2024</a>], rather than fully automating judgment.</p>
-<p>Shaping AI towards human flourishing requires broader input than
-technical expertise alone. There is a growing call for the humanities,
-including fields like philosophy, history, sociology, and the arts, to
-play a central role not just in analyzing AI’s societal impact, but in
-shaping the fundamental design and goals of AI systems [<a href="https://impact.ed.ac.uk/opinion/why-the-humanities-must-shape-the-future-of-ai/">Hemment,
+<p>We firmly believe that shaping AI towards human flourishing requires
+broader input than technical expertise alone. There is a growing call
+for the humanities, including fields like philosophy, history,
+sociology, and the arts, to play a central role not just in analyzing
+AI’s societal impact, but in shaping the fundamental design and goals of
+AI systems [<a href="https://impact.ed.ac.uk/opinion/why-the-humanities-must-shape-the-future-of-ai/">Hemment,
 D. 2025</a>]. This involves fostering greater social and ethical
 literacy among AI developers and ensuring that diverse cultural
 perspectives and values inform AI development [<a href="https://static1.squarespace.com/static/61519ebe46a933184f1a18a3/t/65b26cda3d1d392fba824479/1706192091391/Executive+Summary+New+Perspectives+on+AI+Futures.pdf">CTF</a>].
@@ -1583,8 +1602,7 @@ policy that focus not only on mitigating risks but also on creating
 democratic structures and participatory processes that empower
 individuals and communities in the governance of AI, and study the role
 of institutional contexts in mediating AI’s impact.</p>
-<p>The very metrics used to guide AI development and deployment play a
-critical role. There exists a potential tension between optimizing AI
+<p>We find that there exists a potential tension between optimizing AI
 systems solely for narrow economic or technical objectives (e.g.,
 maximizing efficiency, predictive accuracy, user engagement, or
 corporate profit) and optimizing for broader human well-being. For
@@ -1601,7 +1619,7 @@ development are crucial determinants of its ultimate impact on
 flourishing. Conscious effort is required to align AI systems with human
 values and well-being goals, rather than assuming that maximizing
 economic output will automatically translate into enhanced flourishing.
-This necessitates moving beyond GDP as the sole measure of progress and
+This requires moving beyond GDP as the sole measure of progress and
 developing richer frameworks for evaluating AI’s societal impact.</p>
 </div>
 </div>
@@ -1639,8 +1657,8 @@ and realistic labor market frictions (search costs, matching
 inefficiencies, retraining lags and costs, informed by empirical work on
 adjustments [<a href="https://shapingwork.mit.edu/wp-content/uploads/2023/10/Paper_Artificial-Intelligence-and-Jobs-Evidence-from-Online-Vacancies.pdf">Acemoglu,
 D. et al. 2024</a>]) is crucial.</p>
-<p>Significant investment is needed in developing new data
-infrastructure. This includes collecting granular data on the task
+<p>We believe that significant investment is needed in developing new
+data infrastructure. This includes collecting granular data on the task
 content of jobs and how it changes over time, real-time indicators of
 skill demands (e.g., from online job postings), firm-level adoption and
 specific use cases of AI technologies, worker transitions (job changes,
@@ -1650,10 +1668,11 @@ flourishing beyond GDP. Tracking how AI adoption changes the task
 composition of jobs over time [<a href="https://shapingwork.mit.edu/wp-content/uploads/2023/10/Paper_Artificial-Intelligence-and-Jobs-Evidence-from-Online-Vacancies.pdf">Acemoglu,
 D. et al. 2024</a>], and understanding what are the precise mechanisms
 and quantitative importance of new task creation spurred by AI and how
-this process compares to task automation is essential. Evaluation of the
-effectiveness, cost, scalability, and accessibility of various
-reskilling and upskilling programs is needed to understand how best to
-facilitate worker transitions in response to shifting skill demands [<a href="https://sustainabilitymag.com/articles/wef-report-the-impact-of-ai-driving-170m-new-jobs-by-2030">WEF</a>].</p>
+this process compares to task automation is essential. Finally,
+evaluation of the effectiveness, cost, scalability, and accessibility of
+various reskilling and upskilling programs is needed to understand how
+best to facilitate worker transitions in response to shifting skill
+demands [<a href="https://sustainabilitymag.com/articles/wef-report-the-impact-of-ai-driving-170m-new-jobs-by-2030">WEF</a>].</p>
 </div>
 <div id="modeling-institutional-and-social-contexts" class="section level4">
 <h4>Modeling Institutional and Social Contexts</h4>
@@ -1668,17 +1687,17 @@ vs. labor), social safety nets (e.g., UBI, wage subsidies), and
 investments in education and lifelong learning [<a href="https://www.nber.org/papers/w28453">Korinek, A. et al. 2021</a>].
 Understanding how social acceptance, public trust, ethical
 considerations, and cultural attitudes towards technology shape adoption
-patterns is equally critical [<a href="https://cepr.org/voxeu/columns/should-ai-stay-or-should-ai-go-promises-and-perils-ai-productivity-and-growth">CEPR</a>].
+patterns is equally important [<a href="https://cepr.org/voxeu/columns/should-ai-stay-or-should-ai-go-promises-and-perils-ai-productivity-and-growth">CEPR</a>].
 Research should explicitly model how different institutional
 environments might lead to divergent outcomes even with similar
 technological advancements, and study the challenges of policy
 coordination in this complex landscape [<a href="https://academic.oup.com/spp/article-abstract/51/3/557/7595834?redirectedFrom=fulltext">Makridis,
 C. A. et al. 2024</a>].</p>
-<p>How firms choose to deploy AI, whether prioritizing cost-cutting
-automation or value-creating augmentation, will significantly influence
-labor market outcomes. The speed and breadth of AI diffusion across
-firms of different sizes and sectors, potentially influenced by factors
-identified in firm-level studies [<a href="https://www.nber.org/papers/w31325">Babina, T. et al. 2024</a>],
+<p>We predict that how firms choose to deploy AI, whether prioritizing
+cost-cutting automation or value-creating augmentation, will
+significantly influence labor market outcomes. The speed and breadth of
+AI diffusion across firms of different sizes and sectors, potentially
+influenced by factors identified in firm-level studies [<a href="https://www.nber.org/papers/w31325">Babina, T. et al. 2024</a>],
 will determine the extent and distribution of productivity gains. The
 capacity and speed with which workforces adapt through skill acquisition
 and transitions, the evolution of consumer preferences (e.g., demand for
@@ -1694,15 +1713,15 @@ research.</p>
 </div>
 <div id="scenario-analysis" class="section level4">
 <h4>Scenario Analysis</h4>
-<p>Rather than striving for single-point forecasts, research should
-focus on developing suites of plausible, integrated scenarios. These
-scenarios should combine consistent assumptions about technological
-pathways (informed by technical experts), economic responses, potential
-policy packages (e.g., laissez-faire vs. proactive intervention), and
-societal adaptation patterns. Scenario analysis explicitly embraces
-uncertainty and helps policymakers understand the range of potential
-outcomes and the sensitivity of those outcomes to key drivers and
-choices.</p>
+<p>We believe that rather than striving for single-point forecasts,
+research should focus on developing suites of plausible, integrated
+scenarios. These scenarios should combine consistent assumptions about
+technological pathways (informed by technical experts), economic
+responses, potential policy packages (e.g., laissez-faire vs. proactive
+intervention), and societal adaptation patterns. Scenario analysis
+explicitly embraces uncertainty and helps policymakers understand the
+range of potential outcomes and the sensitivity of those outcomes to key
+drivers and choices.</p>
 </div>
 <div id="understanding-human-ai-collaboration-hybrid-intelligence" class="section level4">
 <h4>Understanding Human-AI Collaboration (Hybrid Intelligence)</h4>
@@ -1730,7 +1749,7 @@ flourishing, such as job quality, autonomy, equity, social cohesion,
 sense of purpose, and mental health, requires developing new measurement
 frameworks and integrating insights from diverse disciplines like
 sociology, psychology, and ethics. Environmental sustainability
-implications also warrant greater attention.</p>
+implications also warrant greater attention than they currently get.</p>
 </div>
 <div id="methodological-pluralism-and-integration" class="section level4">
 <h4>Methodological Pluralism and Integration</h4>
@@ -1757,9 +1776,9 @@ collaboration between economists, computer scientists, sociologists,
 ethicists, and legal scholars is essential for tackling these
 multifaceted questions [<a href="https://impact.ed.ac.uk/opinion/why-the-humanities-must-shape-the-future-of-ai/">Hemment,
 D. 2025</a>].</p>
-<p>A crucial element emerging from these priorities is the need for
-research to be proactive rather than merely reactive. The calls for
-research to inform ethical design, for humanities to shape AI
+<p>We feel that a crucial element emerging from these priorities is the
+need for research to be proactive rather than merely reactive. The calls
+for research to inform ethical design, for humanities to shape AI
 development, for inclusive design processes, and for longitudinal
 tracking to understand emerging impacts all point towards a research
 agenda that aims to actively guide AI’s trajectory towards desirable
@@ -1792,23 +1811,23 @@ previous general-purpose technologies. The potential speed of AI
 development and deployment, its broad applicability across both manual
 and cognitive tasks (including those requiring high skill levels), its
 capacity for learning and adaptation, and the possibility (however
-remote or contested) of achieving AGI suggest that the scale and nature
-of the disruption could be unprecedented [<a href="https://www.imf.org/en/Blogs/Articles/2024/01/14/ai-will-transform-the-global-economy-lets-make-sure-it-benefits-humanity">IMF</a>].
+remote or contested) of achieving something akin to AGI suggest that the
+scale and nature of the disruption could be unprecedented [<a href="https://www.imf.org/en/Blogs/Articles/2024/01/14/ai-will-transform-the-global-economy-lets-make-sure-it-benefits-humanity">IMF</a>].
 Generative AI’s specific impact on knowledge work and creative
 professions represents a novel challenge [<a href="https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/the-economic-potential-of-generative-ai-the-next-productivity-frontier">McKinsey</a>].
 Therefore, while history provides reassurance that adaptation is
 possible and suggests focusing on transition mechanisms, it also
-cautions against complacency. The unique attributes of AI may
-necessitate faster, more comprehensive, or qualitatively different
-policy responses compared to those employed during previous
-technological shifts.</p>
+cautions against complacency. The unique attributes of AI may need
+faster, more comprehensive, or qualitatively different policy responses
+compared to those employed during previous technological shifts.</p>
 </div>
 <div id="policy-pathways-for-shared-prosperity-and-well-being" class="section level3">
 <h3>Policy Pathways for Shared Prosperity and Well-being</h3>
 <p>Given the potential for significant disruption and the uncertainty
-surrounding AI’s ultimate impact, proactive policy interventions are
-crucial for maximizing benefits while mitigating risks and ensuring
-outcomes align with societal goals. Key policy areas include:</p>
+surrounding AI’s ultimate impact, we believe that proactive policy
+interventions are crucial for maximizing benefits while mitigating risks
+and ensuring outcomes align with societal goals. Key policy areas
+include:</p>
 <ol style="list-style-type: decimal">
 <li><strong>Workforce Adaptation</strong>: Substantial public and
 private investment in education and training is paramount. This includes
@@ -1850,7 +1869,7 @@ C. 2025</a>]. This includes developing mechanisms to audit algorithms
 for bias, protect user privacy, combat AI-generated misinformation, and
 ensure human oversight in critical applications [<a href="https://cepr.org/voxeu/columns/should-ai-stay-or-should-ai-go-promises-and-perils-ai-productivity-and-growth">CEPR</a>].
 Given AI’s global nature, international cooperation and coordination on
-AI policy and standards and encouraging public deliberation and
+AI policy and standards, and encouraging public deliberation and
 participation in shaping AI norms and behaviors is vital [<a href="https://academic.oup.com/spp/article-abstract/51/3/557/7595834?redirectedFrom=fulltext">Makridis,
 C. A. et al. 2024</a>].</li>
 <li><strong>Investing in AI for Good</strong>: Policy can actively steer
@@ -1881,18 +1900,18 @@ policies (related to taxation, competition, labor regulation, and
 education) designed to shape the distribution of AI’s benefits and
 foster inclusive growth. A piecemeal approach risks being insufficient;
 a coherent, integrated policy framework, guided by a clear vision for
-shared prosperity and well-being in the AI era, is essential. Perhaps
-the most critical analytical task is not to predict the future state
-precisely, but rather to identify robust policy levers. These are
-interventions (e.g., investments in foundational skills, progressive tax
-systems, antitrust enforcement, adaptable social insurance) that are
-likely to yield positive outcomes, such as promoting shared prosperity,
-mitigating hardship, and enhancing flourishing, across a wide range of
-plausible technological and economic scenarios. The research agenda
-should therefore focus on evaluating the robustness and resilience of
-different policy options under conditions of deep uncertainty, enabling
-societies to navigate the AI transition effectively regardless of which
-specific future unfolds.</li>
+shared prosperity and well-being in the AI era, is essential. We feel
+that perhaps the most critical analytical task is not to predict the
+future state precisely, but rather to identify robust policy levers.
+These are interventions (e.g., investments in foundational skills,
+progressive tax systems, antitrust enforcement, adaptable social
+insurance) that are likely to yield positive outcomes, such as promoting
+shared prosperity, mitigating hardship, and enhancing flourishing,
+across a wide range of plausible technological and economic scenarios.
+The research agenda should therefore focus on evaluating the robustness
+and resilience of different policy options under conditions of deep
+uncertainty, enabling societies to navigate the AI transition
+effectively regardless of which specific future unfolds.</li>
 </ol>
 </div>
 </div>
@@ -1911,43 +1930,44 @@ stagnant wages, and exacerbated social inequalities. The potential
 exists for AI to augment human work, improve efficiency, and contribute
 to solving major global challenges; yet, risks related to job quality
 degradation, algorithmic bias, loss of autonomy, and social
-fragmentation loom large. Crucially, the trajectory of AI’s impact is
-not technologically predetermined. It will be forged at the complex
-intersection of ongoing technological innovation, economic incentives,
-investment decisions, institutional responses, societal adaptation, and
-deliberate policy choices. The stakes are immense, encompassing not only
-the future structure of our economies and labor markets but also
-fundamental aspects of human experience, equity, and well-being.</p>
+fragmentation loom large. Crucially, we like to reiterate that the
+trajectory of AI’s impact is not technologically predetermined. It will
+be forged at the complex intersection of ongoing technological
+innovation, economic incentives, investment decisions, institutional
+responses, societal adaptation, and deliberate policy choices. The
+stakes are immense, encompassing not only the future structure of our
+economies and labor markets but also fundamental aspects of human
+experience, equity, and well-being.</p>
 <p>Navigating this uncertain future demands a renewed commitment to
 rigorous, nuanced, and forward-looking research. The limitations of
 current modeling approaches highlight the urgent need for the research
 priorities outlined in this review: developing more granular analyses of
 skills and tasks, integrating institutional and social contexts into
 economic models, deepening our understanding of human-AI collaboration,
-broadening our valuation metrics to encompass non-market impacts and
-human flourishing, and embracing methodological pluralism and
-interdisciplinary collaboration. Research must become more proactive,
-aiming not just to predict AI’s effects but to inform its ethical
-development and governance.</p>
+broadening our valuation metrics to encompass human flourishing, and
+embracing methodological pluralism and interdisciplinary collaboration.
+Research must become more proactive, aiming not just to predict AI’s
+effects but to inform its ethical development and governance.</p>
 <p>Alongside enhanced research, the path forward requires a commitment
 to responsible innovation. This entails embedding ethical considerations
 and a focus on human well-being into the very design and deployment of
-AI systems. It necessitates inclusive dialogue involving diverse
-stakeholders, researchers, developers, policymakers, businesses,
-workers, and the public, to collectively shape AI’s trajectory. We must
-move beyond simplistic, deterministic views of technology’s impact and
-embrace a more nuanced understanding of AI as a force that co-evolves
-with our economies, institutions, and values. This requires humility in
-prediction, coupled with urgency in preparation. Proactive, adaptive,
-and globally coordinated governance frameworks and robust policy levers
-capable of steering the AI transition towards desirable outcomes, shared
-prosperity, enhanced well-being, and broad-based human flourishing,
-across the wide range of possible futures are needed. The AI revolution
-is unfolding rapidly; through concerted research, responsible practices,
-and wise policy, we can strive to harness its immense potential while
-safeguarding our shared future and fostering a world where technology
-serves, rather than subverts, human flourishing. The path AI takes is
-not preordained; it will be shaped by the choices we make today.</p>
+AI systems. We must move beyond simplistic, deterministic views of
+technology’s impact and embrace a more nuanced understanding of AI as a
+force that co-evolves with our economies, institutions, and values. This
+requires humility in prediction, coupled with urgency in preparation.
+Proactive, adaptive, and robust policy levers capable of steering the AI
+transition towards desirable outcomes, shared prosperity, and
+broad-based human flourishing, across the wide range of possible futures
+are needed. The AI revolution is unfolding rapidly; through concerted
+research, responsible practices, and wise policy, we can strive to
+harness its immense potential while safeguarding our shared future and
+fostering a world where technology serves, rather than subverts, human
+flourishing. The path AI takes is not preordained; it will be shaped by
+the choices we make today.</p>
+<p><em>Note: we will cover other related topics like AGI timelines,
+take-off scenarios, the intelligence curse, gradual disempowerment, and
+differential technological development, in a separate writeup. Stay
+tuned!</em></p>
 </div>
 </div>
 

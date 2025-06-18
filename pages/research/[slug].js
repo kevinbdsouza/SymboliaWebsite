@@ -33,6 +33,8 @@ export default function ResearchArticle() {
                 const $ = cheerio.load(html);
                 const articleTitle = $('h1').first().text();
                 setTitle(articleTitle);
+
+                // --- Logic to process headings for ToC (unchanged) ---
                 const headings = [];
                 $('h2, h3').each((_, element) => {
                     const headingElement = $(element);
@@ -44,8 +46,26 @@ export default function ResearchArticle() {
                         headings.push({ id: generatedId, text, level });
                     }
                 });
+
+                // --- NEW: Logic to process links in the article body ---
+                $('a').each((_, element) => {
+                    const link = $(element);
+                    // Add attributes to open in a new tab securely
+                    link.attr('target', '_blank');
+                    link.attr('rel', 'noopener noreferrer');
+                    // Add inline styles for color and underline
+                    link.css('color', '#FF5A1F'); // Your accent color
+                    link.css('text-decoration', 'underline');
+                });
+
                 const modifiedHtml = $.html();
-                const sanitizedContent = DOMPurify.sanitize(modifiedHtml, { ADD_ATTR: ['id'] });
+
+                // --- NEW: Update sanitizer to allow the new attributes and styles ---
+                const sanitizedContent = DOMPurify.sanitize(modifiedHtml, {
+                    ADD_ATTR: ['id', 'target'], // Allow 'target' attribute
+                    ADD_STYLES: ['color', 'text-decoration'], // Allow inline styles
+                });
+
                 setToc(headings);
                 if (headings.length > 0) {
                     setActiveId(headings[0].id);
@@ -57,6 +77,18 @@ export default function ResearchArticle() {
             });
     }, [slug]);
 
+    // Re-introducing the click handler for the ToC
+    const handleTocLinkClick = (id) => {
+        setActiveId(id);
+        const element = document.getElementById(id);
+        if (element) {
+            const yOffset = -100;
+            const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+            window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+    };
+
+    // The rest of the file is the same...
     const handleScroll = useCallback(() => {
         let closestHeading = { id: '', distance: Infinity };
         const targetLine = 150;
@@ -83,16 +115,6 @@ export default function ResearchArticle() {
         };
     }, [toc, handleScroll]);
 
-    const handleTocLinkClick = (id) => {
-        setActiveId(id);
-        const element = document.getElementById(id);
-        if (element) {
-            const yOffset = -100;
-            const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-            window.scrollTo({ top: y, behavior: 'smooth' });
-        }
-    };
-
     if (!content) {
         return (
             <div className="text-center py-24"><p>Loading article...</p></div>
@@ -103,7 +125,6 @@ export default function ResearchArticle() {
         <section className="px-4 sm:px-8 py-16 max-w-8xl mx-auto">
             <div className="flex flex-col lg:flex-row gap-x-12 lg:items-start">
                 {toc.length > 0 && (
-                    // The overflow and max-height classes have been REMOVED from this div
                     <div className="lg:w-1/4 lg:sticky lg:top-24 z-10">
                        <TableOfContents
                          title={title}
