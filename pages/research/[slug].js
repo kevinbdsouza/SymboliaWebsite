@@ -25,7 +25,7 @@ export default function ResearchArticle() {
     }, [slug]);
 
     if (!content) {
-        return <div>Loading...</div>;
+        return null;
     }
 
     return (
