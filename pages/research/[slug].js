@@ -117,7 +117,7 @@ export default function ResearchArticle() {
 
     if (!content) {
         return (
-            <div className="text-center py-24"><p>Loading article...</p></div>
+            <div className="text-center py-24"><p></p></div>
         );
     }
 
