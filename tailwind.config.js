@@ -16,6 +16,7 @@ module.exports = {
       },
       colors: {
         accent: '#FF5A1F', // warm orange for accent lines (used by DynamicNetworkBackground)
+        'accent-faded': 'rgba(255, 90, 31, 0.6)',
         ink: '#0C1E2C',    // deep navy ink
         primary: '#A0522D', // Example: Sienna - a darker, brownish-red. Choose your desired color for "Symbolic AI".
         heading: '#616161',

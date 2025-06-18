@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import DOMPurify from 'isomorphic-dompurify';
 import * as cheerio from 'cheerio';
 import throttle from 'lodash.throttle';
@@ -16,6 +16,7 @@ const createSlug = (text) => {
 export default function ResearchArticle() {
     const router = useRouter();
     const { slug } = router.query;
+
     const [content, setContent] = useState('');
     const [title, setTitle] = useState('');
     const [toc, setToc] = useState([]);
@@ -23,6 +24,7 @@ export default function ResearchArticle() {
 
     useEffect(() => {
         if (!slug) return;
+
         fetch(`/${slug}.html`)
             .then(res => res.ok ? res.text() : "<h2>Article not found</h2>")
             .then(html => {
@@ -47,6 +49,7 @@ export default function ResearchArticle() {
                 const modifiedHtml = $.html();
                 const sanitizedContent = DOMPurify.sanitize(modifiedHtml, { ADD_ATTR: ['id'] });
                 setToc(headings);
+                // On load, set the first heading as active if it exists
                 if (headings.length > 0) {
                     setActiveId(headings[0].id);
                 }
@@ -57,9 +60,10 @@ export default function ResearchArticle() {
             });
     }, [slug]);
 
+    // We wrap handleScroll in useCallback for performance optimization.
     const handleScroll = useCallback(() => {
         let closestHeading = { id: '', distance: Infinity };
-        const targetLine = 150;
+        const targetLine = 150; // A fixed line on the screen to measure from
         toc.forEach(heading => {
             const element = document.getElementById(heading.id);
             if (element) {
@@ -76,12 +80,15 @@ export default function ResearchArticle() {
 
     useEffect(() => {
         if (toc.length === 0) return;
+        // We create a throttled version of our scroll handler
         const throttledScrollHandler = throttle(handleScroll, 150);
         window.addEventListener('scroll', throttledScrollHandler);
+        // Cleanup function to remove the listener
         return () => {
             window.removeEventListener('scroll', throttledScrollHandler);
         };
     }, [toc, handleScroll]);
+
 
     const handleTocLinkClick = (id) => {
         setActiveId(id);
@@ -103,8 +110,7 @@ export default function ResearchArticle() {
         <section className="px-4 sm:px-8 py-16 max-w-8xl mx-auto">
             <div className="flex flex-col lg:flex-row gap-x-12 lg:items-start">
                 {toc.length > 0 && (
-                    // The overflow and max-height classes have been REMOVED from this div
-                    <div className="lg:w-1/4 lg:sticky lg:top-24 z-10">
+                    <div className="lg:w-1/4 lg:sticky lg:top-24 z-10 overflow-y-auto max-h-[calc(100vh-7rem)]">
                        <TableOfContents
                          title={title}
                          toc={toc}
