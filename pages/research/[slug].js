@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import DOMPurify from 'isomorphic-dompurify';
 import * as cheerio from 'cheerio';
 import throttle from 'lodash.throttle';
@@ -20,6 +20,8 @@ export default function ResearchArticle() {
     const [title, setTitle] = useState('');
     const [toc, setToc] = useState([]);
     const [activeId, setActiveId] = useState('');
+    const isTocClick = useRef(false);
+    const scrollTimeout = useRef(null);
 
     useEffect(() => {
         if (!slug) return;
@@ -34,7 +36,9 @@ export default function ResearchArticle() {
                 const articleTitle = $('h1').first().text();
                 setTitle(articleTitle);
 
-                // --- Logic to process headings for ToC (unchanged) ---
+                // Remove the h1 from the main content so it can be rendered separately
+                $('h1').first().remove();
+
                 const headings = [];
                 $('h2, h3').each((_, element) => {
                     const headingElement = $(element);
@@ -47,23 +51,18 @@ export default function ResearchArticle() {
                     }
                 });
 
-                // --- NEW: Logic to process links in the article body ---
                 $('a').each((_, element) => {
                     const link = $(element);
-                    // Add attributes to open in a new tab securely
                     link.attr('target', '_blank');
                     link.attr('rel', 'noopener noreferrer');
-                    // Add inline styles for color and underline
-                    link.css('color', '#FF5A1F'); // Your accent color
+                    link.css('color', '#FF5A1F'); // Accent color
                     link.css('text-decoration', 'underline');
                 });
 
                 const modifiedHtml = $.html();
-
-                // --- NEW: Update sanitizer to allow the new attributes and styles ---
                 const sanitizedContent = DOMPurify.sanitize(modifiedHtml, {
-                    ADD_ATTR: ['id', 'target'], // Allow 'target' attribute
-                    ADD_STYLES: ['color', 'text-decoration'], // Allow inline styles
+                    ADD_ATTR: ['id', 'target'],
+                    ADD_STYLES: ['color', 'text-decoration'],
                 });
 
                 setToc(headings);
@@ -77,8 +76,8 @@ export default function ResearchArticle() {
             });
     }, [slug]);
 
-    // Re-introducing the click handler for the ToC
     const handleTocLinkClick = (id) => {
+        isTocClick.current = true;
         setActiveId(id);
         const element = document.getElementById(id);
         if (element) {
@@ -86,10 +85,21 @@ export default function ResearchArticle() {
             const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
             window.scrollTo({ top: y, behavior: 'smooth' });
         }
+
+        if (scrollTimeout.current) {
+            clearTimeout(scrollTimeout.current);
+        }
+
+        scrollTimeout.current = setTimeout(() => {
+            isTocClick.current = false;
+        }, 1000);
     };
 
-    // The rest of the file is the same...
     const handleScroll = useCallback(() => {
+        if (isTocClick.current || toc.length === 0) {
+            return;
+        }
+
         let closestHeading = { id: '', distance: Infinity };
         const targetLine = 150;
         toc.forEach(heading => {
@@ -101,10 +111,11 @@ export default function ResearchArticle() {
                 }
             }
         });
-        if (closestHeading.id) {
+
+        if (closestHeading.id && closestHeading.id !== activeId) {
             setActiveId(closestHeading.id);
         }
-    }, [toc]);
+    }, [toc, activeId]);
 
     useEffect(() => {
         if (toc.length === 0) return;
@@ -112,26 +123,36 @@ export default function ResearchArticle() {
         window.addEventListener('scroll', throttledScrollHandler);
         return () => {
             window.removeEventListener('scroll', throttledScrollHandler);
+            if (scrollTimeout.current) {
+                clearTimeout(scrollTimeout.current);
+            }
         };
     }, [toc, handleScroll]);
 
     if (!content) {
         return (
-            <div className="text-center py-24"><p></p></div>
+            <div className="text-center py-24"><p>Loading article...</p></div>
         );
     }
 
     return (
         <section className="px-4 sm:px-8 py-16 max-w-8xl mx-auto">
+            {/* Render title separately at the top */}
+            {title && (
+                <h1 className="font-serif text-4xl md:text-5xl text-ink mb-8 leading-tight">
+                    {title}
+                </h1>
+            )}
+
             <div className="flex flex-col lg:flex-row gap-x-12 lg:items-start">
                 {toc.length > 0 && (
-                    <div className="lg:w-1/4 lg:sticky lg:top-24 z-10">
-                       <TableOfContents
-                         title={title}
-                         toc={toc}
-                         activeId={activeId}
-                         onLinkClick={handleTocLinkClick}
-                       />
+                    <div className="lg:w-1/4 lg:sticky lg:top-24 z-10 mb-12 lg:mb-0">
+                        <TableOfContents
+                            title={title}
+                            toc={toc}
+                            activeId={activeId}
+                            onLinkClick={handleTocLinkClick}
+                        />
                     </div>
                 )}
                 <div className="flex-1 lg:w-3/4">

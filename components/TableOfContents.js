@@ -4,27 +4,24 @@ export default function TableOfContents({ title, toc, activeId, onLinkClick }) {
   const activeLinkRef = useRef(null);
   const scrollContainerRef = useRef(null);
 
-  // This new, safe useEffect handles auto-scrolling the ToC list
   useEffect(() => {
     const activeElement = activeLinkRef.current;
     const scrollContainer = scrollContainerRef.current;
 
     if (!activeElement || !scrollContainer) return;
 
-    // Check if the active element is outside the scroll container's visible area
     const containerRect = scrollContainer.getBoundingClientRect();
     const activeRect = activeElement.getBoundingClientRect();
 
     const isVisible = (activeRect.top >= containerRect.top) && (activeRect.bottom <= containerRect.bottom);
 
-    // Only scroll if the element is NOT visible
     if (!isVisible) {
       activeElement.scrollIntoView({
         behavior: 'smooth',
         block: 'center',
       });
     }
-  }, [activeId]); // This effect runs only when the activeId changes
+  }, [activeId]);
 
   const handleLinkClick = (e, id) => {
     e.preventDefault();
@@ -34,13 +31,13 @@ export default function TableOfContents({ title, toc, activeId, onLinkClick }) {
   };
 
   return (
-    // This root div is now the scrollable container
     <div
       ref={scrollContainerRef}
       className="p-6 bg-[#f5f5f0] border border-gray-200 rounded-lg shadow-sm overflow-y-auto max-h-[calc(100vh-6.5rem)]"
     >
+      {/* Title is now hidden on mobile (lg:block) as it's displayed separately on the page */}
       {title && (
-         <h3 className="font-serif text-2xl text-ink mb-6 pb-4 border-b border-gray-300">{title}</h3>
+         <h3 className="hidden lg:block font-serif text-2xl text-ink mb-6 pb-4 border-b border-gray-300">{title}</h3>
       )}
       <nav>
         <ul>

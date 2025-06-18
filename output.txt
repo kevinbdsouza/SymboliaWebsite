@@ -435,6 +435,73 @@ export default function ResearchCard({ title, authors, date, description, slug }
       </p>
     </div>
   );
+}import { useEffect, useRef } from 'react';
+
+export default function TableOfContents({ title, toc, activeId, onLinkClick }) {
+  const activeLinkRef = useRef(null);
+  const scrollContainerRef = useRef(null);
+
+  // This new, safe useEffect handles auto-scrolling the ToC list
+  useEffect(() => {
+    const activeElement = activeLinkRef.current;
+    const scrollContainer = scrollContainerRef.current;
+
+    if (!activeElement || !scrollContainer) return;
+
+    // Check if the active element is outside the scroll container's visible area
+    const containerRect = scrollContainer.getBoundingClientRect();
+    const activeRect = activeElement.getBoundingClientRect();
+
+    const isVisible = (activeRect.top >= containerRect.top) && (activeRect.bottom <= containerRect.bottom);
+
+    // Only scroll if the element is NOT visible
+    if (!isVisible) {
+      activeElement.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+      });
+    }
+  }, [activeId]); // This effect runs only when the activeId changes
+
+  const handleLinkClick = (e, id) => {
+    e.preventDefault();
+    if (onLinkClick) {
+      onLinkClick(id);
+    }
+  };
+
+  return (
+    // This root div is now the scrollable container
+    <div
+      ref={scrollContainerRef}
+      className="p-6 bg-[#f5f5f0] border border-gray-200 rounded-lg shadow-sm overflow-y-auto max-h-[calc(100vh-6.5rem)]"
+    >
+      {title && (
+         <h3 className="font-serif text-2xl text-ink mb-6 pb-4 border-b border-gray-300">{title}</h3>
+      )}
+      <nav>
+        <ul>
+          {toc.map((item) => {
+            const isActive = item.id === activeId;
+            return (
+              <li key={item.id} className={`py-1 ${item.level === 3 ? 'pl-4' : ''}`}>
+                <a
+                  ref={isActive ? activeLinkRef : null}
+                  href={`#${item.id}`}
+                  onClick={(e) => handleLinkClick(e, item.id)}
+                  className={`block transition-colors duration-150 ${
+                    isActive ? 'font-medium text-accent' : 'text-gray-500 hover:text-accent'
+                  }`}
+                >
+                  {item.text}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </nav>
+    </div>
+  );
 }   Bud1            †                                                           c l e s . j                                           a r t i c l e s . j sIlocblob      A   .ÿÿÿÿÿÿ                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              @      €                                        @      €                                          @      €                                          @                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   E   †                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       DSDB                                 `      À                                               @      €                                          @      €                                          @                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          export const researchArticles = [
   {
     slug: "labor-and-growth-in-the-AI-future-review-and-research-agenda",
@@ -482,6 +549,7 @@ export default defineCloudflareConfig();   // default settings are fine
     "@tailwindcss/typography": "^0.5.16",
     "cheerio": "^1.1.0",
     "isomorphic-dompurify": "^2.25.0",
+    "lodash.throttle": "^4.1.1",
     "lucide-react": "^0.511.0",
     "next": "latest",
     "nodemailer": "^7.0.3",
@@ -641,41 +709,278 @@ export default function Research() {
     </section>
   );
 }   Bud1            †                                                           g ] . j sIl                                          	 [ s l u g ] . j sIlocblob      A   .ÿÿÿÿÿÿ                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  @      €                                        @      €                                          @      €                                          @                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   E   †                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       DSDB                                 `      À                                               @      €                                          @      €                                          @                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          import { useRouter } from 'next/router';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import DOMPurify from 'isomorphic-dompurify';
+import * as cheerio from 'cheerio';
+import throttle from 'lodash.throttle';
+import TableOfContents from '@/components/TableOfContents';
+
+const createSlug = (text) => {
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-');
+};
 
 export default function ResearchArticle() {
     const router = useRouter();
     const { slug } = router.query;
     const [content, setContent] = useState('');
     const [title, setTitle] = useState('');
+    const [toc, setToc] = useState([]);
+    const [activeId, setActiveId] = useState('');
 
     useEffect(() => {
-        if (slug) {
-            // Assuming you have a way to get the title from the slug
-            const formattedTitle = slug.replace(/-/g, ' ');
-            setTitle(formattedTitle);
+        if (!slug) return;
+        fetch(`/${slug}.html`)
+            .then(res => res.ok ? res.text() : "<h2>Article not found</h2>")
+            .then(html => {
+                if (!html) {
+                    setContent("<h2>Article not found</h2>");
+                    return;
+                }
+                const $ = cheerio.load(html);
+                const articleTitle = $('h1').first().text();
+                setTitle(articleTitle);
 
-            // Fetch the content from the public folder
-            fetch(`/${slug}.html`)
-                .then((res) => res.text())
-                .then((html) => {
-                    const sanitizedContent = DOMPurify.sanitize(html);
-                    setContent(sanitizedContent);
+                // --- Logic to process headings for ToC (unchanged) ---
+                const headings = [];
+                $('h2, h3').each((_, element) => {
+                    const headingElement = $(element);
+                    const text = headingElement.text();
+                    if (text) {
+                        const generatedId = createSlug(text);
+                        headingElement.attr('id', generatedId);
+                        const level = element.tagName === 'h2' ? 2 : 3;
+                        headings.push({ id: generatedId, text, level });
+                    }
                 });
-        }
+
+                // --- NEW: Logic to process links in the article body ---
+                $('a').each((_, element) => {
+                    const link = $(element);
+                    // Add attributes to open in a new tab securely
+                    link.attr('target', '_blank');
+                    link.attr('rel', 'noopener noreferrer');
+                    // Add inline styles for color and underline
+                    link.css('color', '#FF5A1F'); // Your accent color
+                    link.css('text-decoration', 'underline');
+                });
+
+                const modifiedHtml = $.html();
+
+                // --- NEW: Update sanitizer to allow the new attributes and styles ---
+                const sanitizedContent = DOMPurify.sanitize(modifiedHtml, {
+                    ADD_ATTR: ['id', 'target'], // Allow 'target' attribute
+                    ADD_STYLES: ['color', 'text-decoration'], // Allow inline styles
+                });
+
+                setToc(headings);
+                if (headings.length > 0) {
+                    setActiveId(headings[0].id);
+                }
+                setContent(sanitizedContent);
+            }).catch(error => {
+                console.error("Failed to process article:", error);
+                setContent("<h2>An error occurred</h2>");
+            });
     }, [slug]);
 
+    // Re-introducing the click handler for the ToC
+    const handleTocLinkClick = (id) => {
+        setActiveId(id);
+        const element = document.getElementById(id);
+        if (element) {
+            const yOffset = -100;
+            const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+            window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+    };
+
+    // The rest of the file is the same...
+    const handleScroll = useCallback(() => {
+        let closestHeading = { id: '', distance: Infinity };
+        const targetLine = 150;
+        toc.forEach(heading => {
+            const element = document.getElementById(heading.id);
+            if (element) {
+                const distance = Math.abs(element.getBoundingClientRect().top - targetLine);
+                if (distance < closestHeading.distance) {
+                    closestHeading = { id: heading.id, distance };
+                }
+            }
+        });
+        if (closestHeading.id) {
+            setActiveId(closestHeading.id);
+        }
+    }, [toc]);
+
+    useEffect(() => {
+        if (toc.length === 0) return;
+        const throttledScrollHandler = throttle(handleScroll, 150);
+        window.addEventListener('scroll', throttledScrollHandler);
+        return () => {
+            window.removeEventListener('scroll', throttledScrollHandler);
+        };
+    }, [toc, handleScroll]);
+
     if (!content) {
-        return null;
+        return (
+            <div className="text-center py-24"><p></p></div>
+        );
     }
 
     return (
-        <section className="px-4 sm:px-8 py-16 max-w-3xl mx-auto">
-            <div
-                className="prose prose-lg max-w-none prose-h1:text-ink prose-h2:text-ink"
-                dangerouslySetInnerHTML={{ __html: content }}
-            />
+        <section className="px-4 sm:px-8 py-16 max-w-8xl mx-auto">
+            <div className="flex flex-col lg:flex-row gap-x-12 lg:items-start">
+                {toc.length > 0 && (
+                    <div className="lg:w-1/4 lg:sticky lg:top-24 z-10">
+                       <TableOfContents
+                         title={title}
+                         toc={toc}
+                         activeId={activeId}
+                         onLinkClick={handleTocLinkClick}
+                       />
+                    </div>
+                )}
+                <div className="flex-1 lg:w-3/4">
+                    <div
+                        className="prose prose-lg max-w-none prose-h1:text-ink prose-h2:text-ink"
+                        dangerouslySetInnerHTML={{ __html: content }}
+                    />
+                </div>
+            </div>
+        </section>
+    );
+}import { useRouter } from 'next/router';
+import { useState, useEffect, useCallback, useRef } from 'react';
+import DOMPurify from 'isomorphic-dompurify';
+import * as cheerio from 'cheerio';
+import throttle from 'lodash.throttle';
+import TableOfContents from '@/components/TableOfContents';
+
+const createSlug = (text) => {
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-');
+};
+
+export default function ResearchArticle() {
+    const router = useRouter();
+    const { slug } = router.query;
+
+    const [content, setContent] = useState('');
+    const [title, setTitle] = useState('');
+    const [toc, setToc] = useState([]);
+    const [activeId, setActiveId] = useState('');
+
+    useEffect(() => {
+        if (!slug) return;
+
+        fetch(`/${slug}.html`)
+            .then(res => res.ok ? res.text() : "<h2>Article not found</h2>")
+            .then(html => {
+                if (!html) {
+                    setContent("<h2>Article not found</h2>");
+                    return;
+                }
+                const $ = cheerio.load(html);
+                const articleTitle = $('h1').first().text();
+                setTitle(articleTitle);
+                const headings = [];
+                $('h2, h3').each((_, element) => {
+                    const headingElement = $(element);
+                    const text = headingElement.text();
+                    if (text) {
+                        const generatedId = createSlug(text);
+                        headingElement.attr('id', generatedId);
+                        const level = element.tagName === 'h2' ? 2 : 3;
+                        headings.push({ id: generatedId, text, level });
+                    }
+                });
+                const modifiedHtml = $.html();
+                const sanitizedContent = DOMPurify.sanitize(modifiedHtml, { ADD_ATTR: ['id'] });
+                setToc(headings);
+                // On load, set the first heading as active if it exists
+                if (headings.length > 0) {
+                    setActiveId(headings[0].id);
+                }
+                setContent(sanitizedContent);
+            }).catch(error => {
+                console.error("Failed to process article:", error);
+                setContent("<h2>An error occurred</h2>");
+            });
+    }, [slug]);
+
+    // We wrap handleScroll in useCallback for performance optimization.
+    const handleScroll = useCallback(() => {
+        let closestHeading = { id: '', distance: Infinity };
+        const targetLine = 150; // A fixed line on the screen to measure from
+        toc.forEach(heading => {
+            const element = document.getElementById(heading.id);
+            if (element) {
+                const distance = Math.abs(element.getBoundingClientRect().top - targetLine);
+                if (distance < closestHeading.distance) {
+                    closestHeading = { id: heading.id, distance };
+                }
+            }
+        });
+        if (closestHeading.id) {
+            setActiveId(closestHeading.id);
+        }
+    }, [toc]);
+
+    useEffect(() => {
+        if (toc.length === 0) return;
+        // We create a throttled version of our scroll handler
+        const throttledScrollHandler = throttle(handleScroll, 150);
+        window.addEventListener('scroll', throttledScrollHandler);
+        // Cleanup function to remove the listener
+        return () => {
+            window.removeEventListener('scroll', throttledScrollHandler);
+        };
+    }, [toc, handleScroll]);
+
+
+    const handleTocLinkClick = (id) => {
+        setActiveId(id);
+        const element = document.getElementById(id);
+        if (element) {
+            const yOffset = -100;
+            const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+            window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+    };
+
+    if (!content) {
+        return (
+            <div className="text-center py-24"><p>Loading article...</p></div>
+        );
+    }
+
+    return (
+        <section className="px-4 sm:px-8 py-16 max-w-8xl mx-auto">
+            <div className="flex flex-col lg:flex-row gap-x-12 lg:items-start">
+                {toc.length > 0 && (
+                    <div className="lg:w-1/4 lg:sticky lg:top-24 z-10 overflow-y-auto max-h-[calc(100vh-7rem)]">
+                       <TableOfContents
+                         title={title}
+                         toc={toc}
+                         activeId={activeId}
+                         onLinkClick={handleTocLinkClick}
+                       />
+                    </div>
+                )}
+                <div className="flex-1 lg:w-3/4">
+                    <div
+                        className="prose prose-lg max-w-none prose-h1:text-ink prose-h2:text-ink"
+                        dangerouslySetInnerHTML={{ __html: content }}
+                    />
+                </div>
+            </div>
         </section>
     );
 }module.exports = {
@@ -750,6 +1055,7 @@ module.exports = {
       },
       colors: {
         accent: '#FF5A1F', // warm orange for accent lines (used by DynamicNetworkBackground)
+        'accent-faded': 'rgba(255, 90, 31, 0.6)',
         ink: '#0C1E2C',    // deep navy ink
         primary: '#A0522D', // Example: Sienna - a darker, brownish-red. Choose your desired color for "Symbolic AI".
         heading: '#616161',
