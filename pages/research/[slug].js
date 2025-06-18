@@ -131,7 +131,7 @@ export default function ResearchArticle() {
 
     if (!content) {
         return (
-            <div className="text-center py-24"><p>Loading article...</p></div>
+            <div className="text-center py-24"><p></p></div>
         );
     }
 
@@ -139,7 +139,7 @@ export default function ResearchArticle() {
         <section className="px-4 sm:px-8 py-16 max-w-8xl mx-auto">
             {/* Render title separately at the top */}
             {title && (
-                <h1 className="font-serif text-4xl md:text-5xl text-ink mb-8 leading-tight">
+                <h1 className="font-serif text-4xl md:text-5xl text-ink mb-8 leading-tight text-center">
                     {title}
                 </h1>
             )}
